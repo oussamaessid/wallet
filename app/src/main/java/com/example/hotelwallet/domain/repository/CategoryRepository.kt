@@ -5,5 +5,5 @@ import com.example.hotelwallet.utility.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {
-    suspend fun getCategories(): Flow<Resource<List<Category>>>
+    suspend fun getCategories(category: String): Flow<Resource<List<Category>>>
 }

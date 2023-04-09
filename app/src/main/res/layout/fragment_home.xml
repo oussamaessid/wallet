@@ -74,7 +74,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/txtHomeCategory"
+                android:id="@+id/txtHomeServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_Title_service"
@@ -96,7 +96,7 @@
                 tools:listitem="@layout/row_item_category"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHomeCategory"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtHomeServices"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

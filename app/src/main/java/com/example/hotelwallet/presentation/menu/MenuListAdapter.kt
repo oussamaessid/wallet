@@ -21,9 +21,9 @@ class MenuListAdapter(
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         with(holder) {
             with(favoriteList[position]) {
-                binding.txtCategoryName.text = strCategory
+                binding.txtCategoryName.text = nom
                 Glide.with(itemView)
-                    .load(strCategoryThumb)
+                    .load(description)
                     .into(binding.imgCategory)
 
                 itemView.setOnClickListener {

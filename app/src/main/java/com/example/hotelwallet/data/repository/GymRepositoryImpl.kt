@@ -1,9 +1,12 @@
 package com.example.hotelwallet.data.repository
 
 import android.util.Log
+import com.example.hotelwallet.data.mapper.GymMapper
 import com.example.hotelwallet.data.mapper.MenuItemMapper
 import com.example.hotelwallet.data.source.remote.Api
+import com.example.hotelwallet.domain.model.Gym
 import com.example.hotelwallet.domain.model.MenuItem
+import com.example.hotelwallet.domain.repository.GymRepository
 import com.example.hotelwallet.domain.repository.MenuRepository
 import com.example.hotelwallet.utility.Resource
 import kotlinx.coroutines.flow.Flow
@@ -12,15 +15,15 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class MenuItemRepositoryImpl @Inject constructor(
+class GymRepositoryImpl @Inject constructor(
     private val api: Api,
-    private val menuItemMapper: MenuItemMapper,
-) : MenuRepository {
-    override suspend fun getMenu(category: String): Flow<Resource<List<MenuItem>>> = flow {
+    private val gymMapper: GymMapper,
+) : GymRepository {
+    override suspend fun getGym(category: String): Flow<Resource<List<Gym>>> = flow {
         try {
             emit(Resource.Loading)
-            val categoriesResponse = menuItemMapper.mapList(
-                api.getMenuItems(category).plat
+            val categoriesResponse = gymMapper.mapList(
+                api.getGym(category).plans
             )
             Log.println(Log.ASSERT,"categoriesResponse",categoriesResponse.toString())
             emit(Resource.Success(categoriesResponse))

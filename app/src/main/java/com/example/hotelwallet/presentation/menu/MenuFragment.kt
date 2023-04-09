@@ -1,6 +1,7 @@
 package com.example.hotelwallet.presentation.menu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -18,6 +19,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(
     FragmentMenuBinding::inflate
 ) {
 
+    private lateinit var idcategory: String
     private val favoriteViewModel by activityViewModels<MenuViewModel>()
 
     private lateinit var menuListAdapter: MenuListAdapter
@@ -28,20 +30,22 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(
 
         menuListAdapter = MenuListAdapter(menuList) {
             val bundle = Bundle()
-            bundle.putString("category_name", it.strCategory)
-            bundle.putString("category_description", it.strCategoryDescription)
-            bundle.putString("category_thumb", it.strCategoryThumb)
-            findNavController().navigate(R.id.action_menuFragment_to_detailFragment)
+            bundle.putString("id_category", it.id.toString())
+            Log.println(Log.ASSERT,"if_category",it.id.toString())
+            bundle.putString("category_name", it.nom)
+            bundle.putString("category_description", it.description)
+            findNavController().navigate(R.id.action_menuFragment_to_detailFragment,bundle)
         }
 
         binding.customToolbar.imgArrow.isVisible = true
         binding.customToolbar.imgArrow.setOnClickListener {
         }
+        getMealInformationFromIntent()
         binding.recyclerViewCategories.setHasFixedSize(true)
         binding.recyclerViewCategories.isNestedScrollingEnabled = false
         binding.recyclerViewCategories.adapter = menuListAdapter
 
-        favoriteViewModel.getCategories()
+        favoriteViewModel.getCategories(idcategory)
         observeFavorites()
 
         setBottomNavigation(true)
@@ -71,6 +75,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(
             }
         }
     }
-
-
+    private fun getMealInformationFromIntent() {
+        val args = this.arguments
+        idcategory = args?.get("id_service").toString()
+    }
 }

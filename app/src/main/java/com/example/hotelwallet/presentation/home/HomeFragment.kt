@@ -1,6 +1,8 @@
 package com.example.hotelwallet.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -31,11 +33,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         setBottomNavigation(true)
-        homeAdapter = HomeAdapter(menuList) { id ->
-            if (id.id == CATEGORY_EAT) {
-                findNavController().navigate(R.id.action_homeFragment_to_menuFragment)
+        homeAdapter = HomeAdapter(menuList) { type ->
+            val bundle = Bundle()
+            bundle.putString("id_service", type.id_service.toString())
+            Log.println(Log.ASSERT,"if_category1",type.id_service.toString())
+            if (type.type.toInt() == CATEGORY_EAT) {
+                findNavController().navigate(R.id.action_homeFragment_to_menuFragment,bundle)
             } else {
-                findNavController().navigate(R.id.action_homeFragment_to_gymFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_gymFragment,bundle)
             }
         }
         binding.customToolbar.imgNotification.setOnClickListener {
@@ -118,44 +123,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             }
         }
     }
-
-//    private fun setSlideList() {
-//        menuList.add(
-//            Service(
-//                R.drawable.img_pizza,
-//                "Restaurant",
-//                1
-//            )
-//        )
-//        menuList.add(
-//            Service(
-//                R.drawable.img_pizza,
-//                "Salle De Sport",
-//                2
-//            )
-//        )
-//        menuList.add(
-//            Service(
-//                R.drawable.img_pizza,
-//                "Restaurant",
-//                1
-//            )
-//        )
-//        menuList.add(
-//            Service(
-//                R.drawable.img_pizza,
-//                "Salle De Sport ",
-//                2
-//            )
-//        )
-//        menuList.add(
-//            Service(
-//                R.drawable.img_pizza,
-//                "Salle De Sport ",
-//                2
-//            )
-//        )
-//    }
-
 
 }

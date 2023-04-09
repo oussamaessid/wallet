@@ -21,9 +21,9 @@ class DetailListAdapter(
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         with(holder) {
             with(favoriteList[position]) {
-                binding.txtCategoryName.text = strMeal
+                binding.txtCategoryName.text = nom
                 Glide.with(itemView)
-                    .load(strMealThumb)
+                    .load(image)
                     .into(binding.imgCategory)
 
                 itemView.setOnClickListener {

@@ -21,13 +21,11 @@ class ServiceFragment : BaseFragment<FragmentServiceBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         homeAdapter = HomeAdapter(menuList) { type ->
-            if (type.id == CATEGORY_EAT) {
+            if (type.id_service == CATEGORY_EAT) {
                 findNavController().navigate(R.id.action_serviceFragment_to_menuFragment)
             } else {
                 findNavController().navigate(R.id.action_serviceFragment_to_menuFragment)
-
             }
         }
         binding.recyclerViewService.setHasFixedSize(true)

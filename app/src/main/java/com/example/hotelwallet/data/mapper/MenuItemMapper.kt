@@ -8,17 +8,25 @@ class MenuItemMapper @Inject constructor() :
     BaseMapper<MenuItemDto, MenuItem> {
     override fun map(from: MenuItemDto): MenuItem {
         return MenuItem(
-            idMeal = from.idMeal,
-            strMeal = from.strMeal,
-            strMealThumb = from.strMealThumb
+            id = from.id,
+            nom= from.nom,
+            description= from.description,
+            prix= from.prix,
+            image= from.image,
+            categorie= from.categorie,
+            id_menu= from.id_menu
         )
     }
 
     override fun mapInverse(from: MenuItem): MenuItemDto {
         return MenuItemDto(
-            idMeal = from.idMeal,
-            strMeal = from.strMeal,
-            strMealThumb = from.strMealThumb
+            id = from.id,
+            nom= from.nom,
+            description= from.description,
+            prix= from.prix,
+            image= from.image,
+            categorie= from.categorie,
+            id_menu= from.id_menu
         )
     }
 }

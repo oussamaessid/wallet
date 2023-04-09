@@ -1,7 +1,7 @@
 package com.example.hotelwallet.data.repository
 
 import com.example.hotelwallet.data.mapper.CategoryMapper
-import com.example.hotelwallet.data.source.remote.HotelApi
+import com.example.hotelwallet.data.source.remote.Api
 import com.example.hotelwallet.domain.model.Category
 import com.example.hotelwallet.domain.repository.CategoryRepository
 import com.example.hotelwallet.utility.Resource
@@ -12,14 +12,15 @@ import java.io.IOException
 import javax.inject.Inject
 
 class CategoryRepositoryImpl @Inject constructor(
-    private val api: HotelApi,
+    private val api: Api,
     private val categoryMapper: CategoryMapper,
 ) : CategoryRepository {
-    override suspend fun getCategories(): Flow<Resource<List<Category>>> = flow {
+
+    override suspend fun getCategories(category : String): Flow<Resource<List<Category>>> = flow {
         try {
             emit(Resource.Loading)
             val categoriesResponse = categoryMapper.mapList(
-                api.getCategories().categories
+                api.getCategories(category).menu
             )
             emit(Resource.Success(categoriesResponse))
         } catch (e: HttpException) {
@@ -28,5 +29,4 @@ class CategoryRepositoryImpl @Inject constructor(
             emit(Resource.Error("Couldn't reach server. Check your internet connection."))
         }
     }
-
 }

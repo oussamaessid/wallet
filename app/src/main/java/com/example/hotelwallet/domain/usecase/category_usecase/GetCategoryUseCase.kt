@@ -10,5 +10,5 @@ import javax.inject.Inject
 class GetCategoryUseCase @Inject constructor(
     private val repository: CategoryRepository
 ) {
-    suspend operator fun invoke(): Flow<Resource<List<Category>>> = repository.getCategories()
+    suspend operator fun invoke(category: String): Flow<Resource<List<Category>>> = repository.getCategories(category)
 }

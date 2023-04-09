@@ -62,7 +62,11 @@
         android:name="com.example.hotelwallet.presentation.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu">
-
+        <argument
+            android:name="id_service"
+            android:defaultValue="0"
+            app:argType="string"
+            app:nullable="false" />
         <action
             android:id="@+id/action_menuFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -73,8 +77,8 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
-            android:name="category_name"
-            android:defaultValue="beef"
+            android:name="id_category"
+            android:defaultValue="0"
             app:argType="string"
             app:nullable="false" />
         <action
@@ -87,10 +91,13 @@
         android:label="fragment_detail_menu"
         tools:layout="@layout/fragment_detail_menu">
         <argument
-            android:name="strMeal"
-            android:defaultValue="beef"
+            android:name="nom"
+            android:defaultValue="name"
             app:argType="string"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_detailMenuFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
 
     </fragment>
     <fragment

@@ -6,7 +6,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
-import com.example.hotelwallet.data.model.MenuItemDto
 import com.example.hotelwallet.databinding.FragmentDetailBinding
 import com.example.hotelwallet.domain.model.MenuItem
 import com.example.hotelwallet.presentation.misc.BaseFragment
@@ -23,7 +22,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
     private var detailList = mutableListOf<MenuItem>()
     private lateinit var categoryName: String
     private lateinit var categoryDescription: String
-    private lateinit var categoryThumb: String
+    private lateinit var idcategory: String
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,17 +30,24 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
         detailListAdapter = DetailListAdapter(detailList) {
             val bundle = Bundle()
-            bundle.putString("strMeal", it.strMeal)
-            bundle.putString("strMealThumb", it.strMealThumb)
-            findNavController().navigate(R.id.action_detailFragment_to_detailMenuFragment)
+            bundle.putString("id", it.id.toString())
+            bundle.putString("nom", it.nom)
+            bundle.putString("image", it.image)
+            bundle.putString("description", it.description)
+            bundle.putString("prix", it.prix)
+            findNavController().navigate(R.id.action_detailFragment_to_detailMenuFragment,bundle)
         }
 
         setBottomNavigation(true)
-        getMealInformationFromIntent()
+        val args = this.arguments
+        categoryName = args?.get("category_name").toString()
+        categoryDescription = args?.get("category_description").toString()
+        idcategory = args?.get("id_category").toString()
+
         binding.recyclerViewMenu.setHasFixedSize(true)
         binding.recyclerViewMenu.isNestedScrollingEnabled = false
         binding.recyclerViewMenu.adapter = detailListAdapter
-        detailViewModel.getFavorite(categoryName)
+        detailViewModel.getFavorite(idcategory)
         observeFavorites()
 
     }
@@ -70,12 +76,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
         }
     }
 
-    private fun getMealInformationFromIntent() {
-        val args = this.arguments
-        categoryName = args?.get("category_name").toString()
-        categoryDescription = args?.get("category_description").toString()
-        categoryThumb = args?.get("category_thumb").toString()
-    }
 
 //    private fun insertDataToDatabase() {
 //        val name  = menuItem.strMeal

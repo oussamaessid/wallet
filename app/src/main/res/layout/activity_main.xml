@@ -48,7 +48,7 @@
             android:id="@+id/btnScan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorCerulean"
+            android:backgroundTint="@color/colorWhite"
             android:src="@drawable/img_scanner"
             app:layout_anchor="@id/bottomAppBar"
             android:contentDescription="scan" />

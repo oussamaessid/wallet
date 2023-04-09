@@ -2,14 +2,18 @@ package com.example.hotelwallet.di
 
 
 import com.example.hotelwallet.data.mapper.CategoryMapper
+import com.example.hotelwallet.data.mapper.GymMapper
 import com.example.hotelwallet.data.mapper.MenuItemMapper
 import com.example.hotelwallet.data.mapper.ServiceMapper
 import com.example.hotelwallet.data.repository.CategoryRepositoryImpl
+import com.example.hotelwallet.data.repository.GymRepositoryImpl
 import com.example.hotelwallet.data.repository.MenuItemRepositoryImpl
 import com.example.hotelwallet.data.repository.ServicesRepositoryImpl
 import com.example.hotelwallet.data.source.remote.Api
 import com.example.hotelwallet.data.source.remote.HotelApi
+import com.example.hotelwallet.domain.model.Gym
 import com.example.hotelwallet.domain.repository.CategoryRepository
+import com.example.hotelwallet.domain.repository.GymRepository
 import com.example.hotelwallet.domain.repository.MenuRepository
 import com.example.hotelwallet.domain.repository.ServiceRepository
 import com.example.hotelwallet.utility.BASE_URL
@@ -49,7 +53,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideCategoryRepository(
-        api: HotelApi,
+        api: Api,
         categoryMapper: CategoryMapper
     ): CategoryRepository =
         CategoryRepositoryImpl(api = api, categoryMapper = categoryMapper)
@@ -57,7 +61,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideMenuItemRepository(
-        api: HotelApi,
+        api: Api,
         menuItemMapper: MenuItemMapper
     ): MenuRepository =
         MenuItemRepositoryImpl(api = api, menuItemMapper = menuItemMapper)
@@ -68,6 +72,13 @@ object AppModule {
         api: Api,
         serviceMapper: ServiceMapper,
     ): ServiceRepository =
-        ServicesRepositoryImpl(api = api, serviceMapper = serviceMapper,)
+        ServicesRepositoryImpl(api = api, serviceMapper = serviceMapper)
 
+    @Singleton
+    @Provides
+    fun provideGymRepository(
+        api: Api,
+        gymMapper: GymMapper
+    ): GymRepository =
+        GymRepositoryImpl(api = api, gymMapper = gymMapper)
 }

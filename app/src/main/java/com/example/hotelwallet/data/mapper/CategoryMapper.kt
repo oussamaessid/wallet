@@ -8,19 +8,17 @@ class CategoryMapper @Inject constructor() :
     BaseMapper<CategoryDto, Category> {
     override fun map(from: CategoryDto): Category {
         return Category(
-            idCategory = from.idCategory,
-            strCategory = from.strCategory,
-            strCategoryDescription = from.strCategoryDescription,
-            strCategoryThumb = from.strCategoryThumb
+            id = from.id,
+            nom = from.nom,
+            description = from.description
         )
     }
 
     override fun mapInverse(from: Category): CategoryDto {
         return CategoryDto(
-            idCategory = from.idCategory,
-            strCategory = from.strCategory,
-            strCategoryDescription = from.strCategoryDescription,
-            strCategoryThumb = from.strCategoryThumb
+            id = from.id,
+            nom = from.nom,
+            description = from.description
         )
     }
 }

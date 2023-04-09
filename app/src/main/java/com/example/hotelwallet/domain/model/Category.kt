@@ -1,8 +1,7 @@
 ﻿package com.example.hotelwallet.domain.model
 
 data class Category(
-    val idCategory: String,
-    val strCategory: String,
-    val strCategoryDescription: String,
-    val strCategoryThumb: String
+    val id: Int,
+    val nom: String,
+    val description: String
 )

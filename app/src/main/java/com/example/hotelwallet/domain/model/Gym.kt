@@ -1,11 +1,12 @@
 package com.example.hotelwallet.domain.model
 
-data class MenuItem(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+data class Gym(
     val id: Int,
     val nom: String,
     val description: String,
     val prix: String,
-    val image: String,
-    val categorie: String,
-    val id_menu: String
+    val image: String
 )

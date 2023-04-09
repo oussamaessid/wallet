@@ -8,19 +8,21 @@ class ServiceMapper @Inject constructor() :
     BaseMapper<ServiceDto, Services> {
     override fun map(from: ServiceDto): Services {
         return Services(
-            id = from.id,
+            id_service = from.id_service,
             nom = from.nom,
-            details = from.details,
-            image = from.image
+            description = from.description,
+            image = from.image,
+            type = from.type
         )
     }
 
     override fun mapInverse(from: Services): ServiceDto {
         return ServiceDto(
-            id = from.id,
+            id_service = from.id_service,
             nom = from.nom,
-            details = from.details,
-            image = from.image
+            description = from.description,
+            image = from.image,
+            type = from.type
         )
     }
 }
