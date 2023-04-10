@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.hotelwallet.R
-import com.example.hotelwallet.data.model.MenuItemDto
 import com.example.hotelwallet.data.source.local.Basket
 import com.example.hotelwallet.databinding.FragmentDetailMenuBinding
 import com.example.hotelwallet.presentation.basket.BasketViewModel
@@ -35,8 +34,8 @@ class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
         Description = args?.get("description").toString()
         Image = args?.get("image").toString()
         Prix = args?.get("prix").toString()
-
-        binding.txtCount.text = totalInCart.toString()
+        var count = binding.txtCount.text
+        count = totalInCart.toString()
         binding.txtPrice.text = Prix
         binding.txtDescription.text = Description
         setInformationInView()
@@ -45,7 +44,7 @@ class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
         setBottomNavigation(true)
 
         binding.btnReservation.setOnClickListener {
-            val favorite = Basket( Name, Prix)
+            val favorite = Basket(Name, Prix, count, Image)
             basketViewModel.insertFavorite(favorite)
         }
 

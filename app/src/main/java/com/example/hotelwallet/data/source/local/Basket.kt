@@ -7,5 +7,7 @@ import androidx.room.PrimaryKey
 data  class Basket (
     @PrimaryKey
     val name: String,
-    val price: String
+    val price: String,
+    val quantity: String,
+    val image: String,
 )
