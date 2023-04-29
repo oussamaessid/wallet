@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_login" />
 
             <EditText
-                android:id="@+id/edit_first_name"
+                android:id="@+id/editName"
                 style="@style/EditText"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="16dp"
@@ -67,16 +67,6 @@
                 android:hint="@string/txt_your_first_name"
                 app:layout_constraintTop_toBottomOf="@+id/txt_eat_and_meet" />
 
-            <EditText
-                android:id="@+id/edit_last_name"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_user"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_your_last_name"
-                app:layout_constraintTop_toBottomOf="@+id/edit_first_name" />
 
             <EditText
                 android:id="@+id/edit_email"
@@ -88,19 +78,8 @@
                 android:drawablePadding="16dp"
                 android:hint="@string/txt_email"
                 android:inputType="textEmailAddress"
-                app:layout_constraintTop_toBottomOf="@+id/edit_last_name" />
+                app:layout_constraintTop_toBottomOf="@+id/editName" />
 
-            <EditText
-                android:id="@+id/edit_phone"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_phone"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_phone"
-                android:inputType="phone"
-                app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
 
             <EditText
@@ -113,7 +92,7 @@
                 android:drawablePadding="16dp"
                 android:hint="@string/txt_password"
                 android:inputType="textPassword"
-                app:layout_constraintTop_toBottomOf="@+id/edit_phone" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
             <ImageView
                 android:id="@+id/img_show_password"
@@ -129,30 +108,16 @@
                 app:layout_constraintTop_toTopOf="@+id/edit_password" />
 
             <EditText
-                android:id="@+id/edit_confirm_password"
+                android:id="@+id/editImage"
                 style="@style/EditText"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_lock"
+                android:drawableStart="@drawable/img_email"
                 android:drawablePadding="16dp"
-                android:hint="@string/txt_confirm_password"
-                android:inputType="textPassword"
+                android:hint="@string/txt_email"
+                android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@+id/edit_password" />
-
-            <ImageView
-                android:id="@+id/img_show_confirm_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="4dp"
-                android:src="@drawable/img_show_password"
-                app:layout_constraintBottom_toBottomOf="@+id/edit_confirm_password"
-                app:layout_constraintEnd_toEndOf="@+id/edit_confirm_password"
-                app:layout_constraintTop_toTopOf="@+id/edit_confirm_password" />
-
 
 
 
@@ -167,7 +132,20 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 app:backgroundTint="@color/colorCerulean"
-                app:layout_constraintTop_toBottomOf="@+id/edit_confirm_password" />
+                app:layout_constraintTop_toBottomOf="@+id/editImage" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_login"
+                style="@style/HotelWalletButtonMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txt_btn_login"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                app:backgroundTint="@color/colorCerulean"
+                app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

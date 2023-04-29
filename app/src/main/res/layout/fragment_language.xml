@@ -7,53 +7,89 @@
     tools:context=".presentation.language.LanguageFragment">
 
     <LinearLayout
+        android:id="@+id/linear_language_english"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/background_white_with_ripple"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_checked_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/circle_punch" />
 
-            <TextView
-                android:id="@+id/txtTitleEnglish"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_Title_english"
-                android:layout_marginTop="24dp"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/chexkboxEnglish"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txt_name_en"
+            style="@style/TextViewStyle.Bold.16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:text="@string/txt_Title_english" />
 
-            <CheckBox
-                android:id="@+id/chexkboxEnglish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:checked="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/img_flag_en"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            tools:src="@drawable/img_flag_united_kingdom" />
 
-            <TextView
-                android:id="@+id/txtTitleArabic"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:text="@string/txt_Title_arabic"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/chexkboxArabic"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chexkboxEnglish" />
-
-            <CheckBox
-                android:id="@+id/chexkboxArabic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chexkboxEnglish" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/separator_language_english"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/boulder"
+        app:layout_constraintTop_toBottomOf="@+id/linear_language_english" />
+
+    <LinearLayout
+        android:id="@+id/linear_language_germany"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/background_white_with_ripple"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/separator_language_english">
+
+        <ImageView
+            android:id="@+id/img_checked_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/circle_punch" />
+
+        <TextView
+            android:id="@+id/txt_name_de"
+            style="@style/TextViewStyle.Bold.16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:text="@string/txt_Title_arabic" />
+
+        <ImageView
+            android:id="@+id/img_flag_de"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            tools:src="@drawable/img_flag_united_kingdom" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/separator_language_germany"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/boulder"
+        app:layout_constraintTop_toBottomOf="@+id/linear_language_germany" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

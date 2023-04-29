@@ -1,11 +1,11 @@
 package com.example.hotelwallet.data.source.remote
 
-import com.example.hotelwallet.data.model.CategoryListResponse
-import com.example.hotelwallet.data.model.GymListResponse
-import com.example.hotelwallet.data.model.MenuItemListResponse
-import com.example.hotelwallet.data.model.ServiceListResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.example.hotelwallet.data.model.*
+import com.example.hotelwallet.domain.model.Login
+import com.example.hotelwallet.domain.model.SignUp
+import com.example.hotelwallet.domain.model.User
+import retrofit2.Response
+import retrofit2.http.*
 
 interface Api {
 
@@ -26,5 +26,12 @@ interface Api {
     suspend fun getGym(
         @Path("id") id: String
     ): GymListResponse
+
+
+    @POST("auth/loginUser")
+    suspend fun login(@Body credentials: Login):  UserListResponse
+
+    @POST("auth/createUser")
+    suspend fun signUp(@Body credentials: SignUp): MessageDto
 
 }

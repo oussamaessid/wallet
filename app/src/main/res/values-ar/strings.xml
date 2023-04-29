@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">HotelWallet</string>
+
+    <string name="title_onboarding_1">العمل في المنزل</string>
+    <string name="description_onboarding_1">العمل في المنزل لمزيد من الراحة. قم بعمل مشاريع رائعة مع هذا التطبيق</string>
+    <string name="title_onboarding_2">حلل مشروعك</string>
+    <string name="description_onboarding_2">تفاصيل ذكية للتحليل. افعل المزيد مع هذا التطبيق</string>
+    <string name="title_onboarding_3">حقق اهدافك</string>
+    <string name="description_onboarding_3">حقق أهدافك بسهولة أكبر. هذا التطبيق سوف يساعد في ذلك</string>
+
+    <!-- *********** Text *********** -->
+    <string name="txt_dynamic_text">%s</string>
+    <string name="txt_menu">قائمة طعام</string>
+    <string name="txt_prix">سعر</string>
+    <string name="txt_title">أهلاً</string>
+    <string name="txt_name">oussama</string>
+    <string name="txt_amount">1000 D</string>
+    <string name="txt_pay">دفع</string>
+    <string name="txt_langauge">لغة</string>
+    <string name="txt_logout">تسجيل خروج</string>
+    <string name="txt_history">تاريخي</string>
+    <string name="txt_select_your_languages">حدد اللغات الخاصة بك</string>
+    <string name="txt_hello">مرحبًا</string>
+    <string name="txt_hotel_wallet">Hotel Wallet</string>
+    <string name="txt_ingradients">مكونات</string>
+    <string name="txt_register">تجيل</string>
+    <string name="txt_your_first_name">اسمك الأول</string>
+    <string name="txt_your_last_name">اسمك الاخير</string>
+    <string name="txt_email">بريد إلكتروني</string>
+    <string name="txt_phone">هاتف</string>
+    <string name="txt_confirm_password">تأكيد كلمة المرور</string>
+    <string name="txt_password"> كلمة المرور</string>
+    <string name="txt_login">تسجيل الدخول</string>
+    <string name="txt_forget_password">نسيت كلمة المرور؟</string>
+    <string name="txt_enter_your_email_or_mobile">أدخل بريدك الإلكتروني أو هاتفك المحمول</string>
+    <string name="txt_scan">أصبح تسجيل الفندق سهلاً بنقرة واحدة فقط</string>
+    <string name="txt_scan_to_login">اذهب لتسجيل الدخول</string>
+
+
+    <!-- *********** Menu *********** -->
+    <string name="txt_home">بيت</string>
+    <string name="txt_category">فئة</string>
+    <string name="txt_profile">حساب تعريفي</string>
+    <string name="txt_settings">إعدادات</string>
+    <string name="txt_favorite">مفضل</string>
+
+    <!-- *********** Title *********** -->
+    <string name="txt_title_amount">رصيدك</string>
+    <string name="txt_Title_service">خدمات</string>
+    <string name="txt_Title_english">إنجليزي</string>
+    <string name="txt_Title_arabic">عربي</string>
+    <string name="txt_title_description">وصف</string>
+    <string name="txt_title_quantity">كمية</string>
+    <string name="txt_title_price">سعر</string>
+
+    <!-- *********** Button *********** -->
+    <string name="txt_btn_skip">يتخطى</string>
+    <string name="txt_btn_next">التالي</string>
+    <string name="txt_btn_go">يذهب</string>
+    <string name="txt_btn_back">رجوع</string>
+    <string name="txt_btn_ok">نعم</string>
+    <string name="txt_btn_arabic">عربي</string>
+    <string name="txt_btn_english">إنجليزي</string>
+    <string name="txt_btn_login">تسجيل الدخول</string>
+    <string name="txt_btn_sing_up">تجيل</string>
+    <string name="txt_btn_register">تجيل</string>
+    <string name="txt_btn_scan">مسح</string>
+
+    <!-- *********** Message *********** -->
+
+</resources>

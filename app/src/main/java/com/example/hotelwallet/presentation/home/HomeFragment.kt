@@ -1,6 +1,5 @@
 package com.example.hotelwallet.presentation.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,21 +27,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     private lateinit var homeAdapter: HomeAdapter
     private var menuList = mutableListOf<Services>()
     val imageList = ArrayList<SlideModel>()
+    private lateinit var name: String
+    private lateinit var solde: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val args = this.arguments
+        name = args?.get("name").toString()
+        solde = args?.get("solde").toString()
 
         setBottomNavigation(true)
         homeAdapter = HomeAdapter(menuList) { type ->
             val bundle = Bundle()
             bundle.putString("id_service", type.id_service.toString())
-            Log.println(Log.ASSERT,"if_category1",type.id_service.toString())
+            Log.println(Log.ASSERT, "if_category1", type.id_service.toString())
             if (type.type.toInt() == CATEGORY_EAT) {
-                findNavController().navigate(R.id.action_homeFragment_to_menuFragment,bundle)
+                findNavController().navigate(R.id.action_homeFragment_to_menuFragment, bundle)
             } else {
-                findNavController().navigate(R.id.action_homeFragment_to_gymFragment,bundle)
+                findNavController().navigate(R.id.action_homeFragment_to_gymFragment, bundle)
             }
         }
+
+        binding.customToolbar.txtTitleName.text = name
+        binding.customToolbar.txtAmount.text = solde
+
         binding.customToolbar.imgNotification.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }

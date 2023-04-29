@@ -35,13 +35,25 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="50dp"
             android:layout_weight="1"
-            android:text="@string/txt_name"
+            android:text="@string/txt_title"
             android:textColor="@color/colorWhite"
             app:layout_constraintStart_toEndOf="@+id/imgArrow"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtAmount"
+            android:id="@+id/txtTitleName"
+            style="@style/TextViewStyle.Black.24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:text="@string/txt_name"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toEndOf="@+id/txtTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitleAmount"
             style="@style/TextViewStyle.Black.18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,7 +65,7 @@
             app:layout_constraintStart_toEndOf="@+id/imgArrow"
             app:layout_constraintTop_toBottomOf="@id/txtTitle" />
         <TextView
-            android:id="@+id/txt_switch_category"
+            android:id="@+id/txtAmount"
             style="@style/TextViewStyle.Black.24"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -61,7 +73,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/txt_amount"
             android:textColor="@color/colorWhite"
-            app:layout_constraintStart_toEndOf="@+id/txtAmount"
+            app:layout_constraintStart_toEndOf="@+id/txtTitleAmount"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
             <ImageView

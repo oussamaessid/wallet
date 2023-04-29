@@ -27,6 +27,7 @@ class OffersAdapter (
                     .into(binding.imgOrder)
                 binding.txtName.text = description
                 binding.txtUserName.text = nom
+                binding.txtPrice.text = prix
 
                 binding.btnAdd.setOnClickListener{
                     listener(this)

@@ -21,7 +21,9 @@
             motion:layout_constraintBottom_toBottomOf="@+id/btnSkip"
             motion:layout_constraintEnd_toStartOf="@+id/btnSkip"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="@+id/btnSkip" />
+            motion:layout_constraintTop_toTopOf="@+id/btnSkip"
+            motion:layout_constraintVertical_bias="0.0"
+            motion:layout_constraintHorizontal_bias="0.0" />
 
         <Constraint
             android:id="@+id/btnSkip"

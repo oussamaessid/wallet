@@ -25,21 +25,21 @@
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnNext"
-            style="@style/HotelWalletButtonMain"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:text="@string/txt_btn_next"
-            android:textColor="@color/colorWhite"
-            app:backgroundTint="@color/colorCerulean"
-            app:layout_constraintBottom_toBottomOf="@+id/btnSkip"
-            app:layout_constraintEnd_toStartOf="@+id/btnSkip"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnSkip" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        style="@style/HotelWalletButtonMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/txt_btn_next"
+        android:textColor="@color/colorWhite"
+        app:backgroundTint="@color/colorCerulean"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSkip"
+        app:layout_constraintEnd_toStartOf="@+id/btnSkip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnSkip" />
 
-        <com.google.android.material.button.MaterialButton
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSkip"
             style="@style/HotelWalletButtonMain"
             android:layout_width="wrap_content"

@@ -37,6 +37,11 @@
         android:name="com.example.hotelwallet.presentation.scanner.ScannerFragment"
         android:label="fragment_scanner"
         tools:layout="@layout/fragment_scanner" >
+        <argument
+            android:name="result"
+            android:defaultValue="result"
+            app:argType="string"
+            app:nullable="false" />
         <action
             android:id="@+id/action_scannerFragment_to_resultQrCodeFragment"
             app:destination="@id/resultQrCodeFragment"
@@ -44,9 +49,10 @@
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_scannerFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/scannerFragment"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_scannerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultQrCodeFragment"
@@ -54,7 +60,7 @@
         android:label="fragment_result_qr_code"
         tools:layout="@layout/fragment_result_qr_code" >
         <action
-            android:id="@+id/action_resultQrCodeFragment_to_scannerFragment2"
+            android:id="@+id/action_resultQrCodeFragment_to_scannerFragment"
             app:destination="@id/scannerFragment" />
     </fragment>
     <fragment
@@ -105,31 +111,8 @@
         android:name="com.example.hotelwallet.presentation.gym.GymFragment"
         android:label="fragment_gym"
         tools:layout="@layout/fragment_gym" >
-        <action
-            android:id="@+id/action_gymFragment_to_offersFragment"
-            app:destination="@id/offersFragment" />
-        <action
-            android:id="@+id/action_gymFragment_to_coachFragment"
-            app:destination="@id/coachFragment" />
-        <action
-            android:id="@+id/action_gymFragment_to_coursFragment"
-            app:destination="@id/coursFragment" />
+
     </fragment>
-    <fragment
-        android:id="@+id/coachFragment"
-        android:name="com.example.hotelwallet.presentation.gym.CoachFragment"
-        android:label="fragment_coach"
-        tools:layout="@layout/fragment_coach" />
-    <fragment
-        android:id="@+id/offersFragment"
-        android:name="com.example.hotelwallet.presentation.gym.OffersFragment"
-        android:label="fragment_offers"
-        tools:layout="@layout/fragment_offers" />
-    <fragment
-        android:id="@+id/coursFragment"
-        android:name="com.example.hotelwallet.presentation.gym.CoursFragment"
-        android:label="fragment_cours"
-        tools:layout="@layout/fragment_cours" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.hotelwallet.presentation.profile.ProfileFragment"
@@ -175,11 +158,11 @@
         android:label="fragment_welcome_on_boarding"
         tools:layout="@layout/fragment_welcome_on_boarding" >
         <action
-            android:id="@+id/action_welcomeOnBoardingFragment_to_scannerFragment"
-            app:destination="@id/scannerFragment" />
-        <action
             android:id="@+id/action_welcomeOnBoardingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_welcomeOnBoardingFragment_to_scannerFragment"
+            app:destination="@id/scannerFragment" />
     </fragment>
     <fragment
         android:id="@+id/languageFragment"
@@ -191,4 +174,30 @@
         android:name="com.example.hotelwallet.presentation.basket.BasketFragment"
         android:label="fragment_basket"
         tools:layout="@layout/fragment_basket" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.hotelwallet.presentation.sign.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.hotelwallet.presentation.sign.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.hotelwallet.presentation.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

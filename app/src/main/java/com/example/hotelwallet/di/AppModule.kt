@@ -1,26 +1,24 @@
 package com.example.hotelwallet.di
 
 
-import com.example.hotelwallet.data.mapper.CategoryMapper
-import com.example.hotelwallet.data.mapper.GymMapper
-import com.example.hotelwallet.data.mapper.MenuItemMapper
-import com.example.hotelwallet.data.mapper.ServiceMapper
-import com.example.hotelwallet.data.repository.CategoryRepositoryImpl
-import com.example.hotelwallet.data.repository.GymRepositoryImpl
-import com.example.hotelwallet.data.repository.MenuItemRepositoryImpl
-import com.example.hotelwallet.data.repository.ServicesRepositoryImpl
+import android.content.Context
+import androidx.room.Room
+import com.example.hotelwallet.data.mapper.*
+import com.example.hotelwallet.data.repository.*
+import com.example.hotelwallet.data.source.local.AppBasket
+import com.example.hotelwallet.data.source.local.BasketsDao
+import com.example.hotelwallet.data.source.local.FavoritesDao
+import com.example.hotelwallet.data.source.local.datastore.AppDataStoreManager
 import com.example.hotelwallet.data.source.remote.Api
 import com.example.hotelwallet.data.source.remote.HotelApi
 import com.example.hotelwallet.domain.model.Gym
-import com.example.hotelwallet.domain.repository.CategoryRepository
-import com.example.hotelwallet.domain.repository.GymRepository
-import com.example.hotelwallet.domain.repository.MenuRepository
-import com.example.hotelwallet.domain.repository.ServiceRepository
+import com.example.hotelwallet.domain.repository.*
 import com.example.hotelwallet.utility.BASE_URL
 import com.example.hotelwallet.utility.BASE_URL1
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -49,6 +47,30 @@ object AppModule {
             .build()
             .create(Api::class.java)
     }
+
+    @Provides
+    fun provideBasketsDao(appDatabase: AppBasket): BasketsDao {
+        return appDatabase.favoriteDao()
+    }
+
+    @Provides
+    fun provideFavoritesDao(appDatabase: AppBasket): FavoritesDao {
+        return appDatabase.favoritesDao()
+    }
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context): AppBasket {
+        return Room.databaseBuilder(
+            context,
+            AppBasket::class.java,
+            "Hotel_Wallet_database"
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataStoreManager(@ApplicationContext appContext: Context): AppDataStore =
+        AppDataStoreManager(appContext)
 
     @Singleton
     @Provides
@@ -81,4 +103,14 @@ object AppModule {
         gymMapper: GymMapper
     ): GymRepository =
         GymRepositoryImpl(api = api, gymMapper = gymMapper)
+
+    @Singleton
+    @Provides
+    fun provideLoginRepository(
+        api: Api,
+        loginMapper: LoginMapper,
+        messageMapper: MessageMapper
+    ): LoginRepository =
+        LoginRepositoryImpl(api = api, loginMapper = loginMapper, messageMapper = messageMapper)
+
 }

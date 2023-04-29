@@ -2,13 +2,19 @@ package com.example.hotelwallet.presentation.welcome
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentWelcomeOnBoardingBinding
 import com.example.hotelwallet.domain.model.WelcomeSlide
+import com.example.hotelwallet.presentation.language.LanguageViewModel
 import com.example.hotelwallet.presentation.misc.BaseFragment
+import com.example.hotelwallet.utility.KEY_ENGLISH
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>(
@@ -17,6 +23,7 @@ class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>
 
     private lateinit var slideAdapter: WelcomeOnBoardingAdapter
     private var slideList = mutableListOf<WelcomeSlide>()
+    private val languageViewModel by viewModels<LanguageViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,22 +38,22 @@ class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>
         slideList.add(
             WelcomeSlide(
                 R.drawable.bacground4,
-                "Work at Home",
-                "Work at home to more comfort. Make a great projects with this app"
+                getString(R.string.title_onboarding_1),
+                getString(R.string.description_onboarding_1)
             )
         )
         slideList.add(
             WelcomeSlide(
                 R.drawable.bacground4,
-                "Analyse Your Project",
-                "Smart details for analysis. Do more with this app"
+                getString(R.string.title_onboarding_2),
+                getString(R.string.description_onboarding_2)
             )
         )
         slideList.add(
             WelcomeSlide(
                 R.drawable.bacground4,
-                "Achieve Your Goals",
-                "Achieve your goals more easily. This app will help with that"
+                getString(R.string.title_onboarding_3),
+                getString(R.string.description_onboarding_3)
             )
         )
 

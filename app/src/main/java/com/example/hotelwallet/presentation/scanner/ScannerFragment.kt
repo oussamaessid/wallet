@@ -1,51 +1,50 @@
 package com.example.hotelwallet.presentation.scanner
 
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentScannerBinding
+import com.example.hotelwallet.presentation.misc.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ScannerFragment : Fragment() {
+class ScannerFragment : BaseFragment<FragmentScannerBinding>(
+    FragmentScannerBinding::inflate
+) {
 
-    private var _binding: FragmentScannerBinding? = null
-    private val binding: FragmentScannerBinding get() = requireNotNull(_binding)
+    private lateinit var result: String
 
-    companion object {
-        const val RESULT = "RESULT"
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        _binding = FragmentScannerBinding.inflate(inflater, container, false)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btnScan.setOnClickListener {
-                findNavController().navigate(R.id.action_scannerFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_scannerFragment_to_resultQrCodeFragment)
         }
 
-        val intent = Intent ()
-        val result = intent.getStringExtra(RESULT)
+        getMealInformationFromIntent()
 
-
-
-        if (result != null) {
+        if(result !="null"){
             if (result.contains("https://") || result.contains("http://")) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(result))
                 startActivity(intent)
             } else {
-                binding.result.text = result.toString()
+                binding.txtResult.isVisible = true
+                binding.txtResult.text = result.toString()
+                binding.btnScan.text = getString(R.string.txt_scan_to_login)
+                binding.btnScan.setOnClickListener {
+                    findNavController().navigate(R.id.action_scannerFragment_to_loginFragment)
+                }
             }
         }
-
-        return binding.root
     }
 
+    private fun getMealInformationFromIntent() {
+        val args = this.arguments
+        result = args?.get("RESULT").toString()
+    }
 }

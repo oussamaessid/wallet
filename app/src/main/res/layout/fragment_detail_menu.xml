@@ -56,59 +56,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtIngradients"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="@string/txt_ingradients"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayoutIngradients"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtIngradients">
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/ing_tomates" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/ing_carotte" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/ing_oignon" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/ing_laitue" />
-        </LinearLayout>
-
-        <TextView
             android:id="@+id/txtTitleDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,7 +67,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutIngradients" />
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
         <TextView
             android:id="@+id/txtDescription"
             android:layout_width="0dp"
@@ -156,7 +103,7 @@
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/txtTitleQuantity"
-            app:layout_constraintBottom_toTopOf="@+id/btn_reservation"
+            app:layout_constraintBottom_toTopOf="@+id/btnReservation"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
 
@@ -194,18 +141,30 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_reservation"
-            android:layout_width="match_parent"
+            android:id="@+id/btnReservation"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_margin="16dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Add To Cart "
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/textSizeRegularExtraPlus"
             app:backgroundTint="@color/colorCerulean"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toStartOf="@+id/btnBasket"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMoreLayout" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnBasket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorCerulean"
+            android:src="@drawable/img_basket"
+            app:layout_constraintBottom_toBottomOf="@+id/btnReservation"
+            app:layout_constraintTop_toTopOf="@+id/btnReservation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addMoreLayout" />
 

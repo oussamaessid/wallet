@@ -1,19 +1,19 @@
-package com.example.hotelwallet.presentation.detail
+package com.example.hotelwallet.presentation.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hotelwallet.data.source.local.Basket
+import com.example.hotelwallet.data.source.local.Favorite
 import com.example.hotelwallet.databinding.RowItemDetailBinding
-import com.example.hotelwallet.domain.model.Details
 import com.example.hotelwallet.presentation.basket.BasketViewModel
 
 
-class DetailMenuAdapter(
-    private val menuList: List<Basket>,
+class FavoriteAdapter(
+    private val menuList: List<Favorite>,
     private val viewModel: BasketViewModel
-) : RecyclerView.Adapter<DetailMenuAdapter.MenuViewHolder>() {
+) : RecyclerView.Adapter<FavoriteAdapter.MenuViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
         val binding = RowItemDetailBinding
@@ -26,13 +26,13 @@ class DetailMenuAdapter(
             with(menuList[position]) {
                 binding.menuName.text = name
                 binding.menuPrice.text = price
-                binding.menuQty.text = quantity
+                binding.txtCount.text = quantity
                 Glide.with(itemView)
                     .load(image)
                     .into(binding.thumbImage)
 
                 binding.ivDelete.setOnClickListener {
-                    viewModel.deleteFavorite(menuList[position])
+                    viewModel.deleteFavorites(menuList[position])
                 }
             }
 

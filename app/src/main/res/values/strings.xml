@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HotelWallet</string>
+    <string name="app_name" translatable="false">HotelWallet</string>
 
     <string name="title_onboarding_1">Work at Home</string>
     <string name="description_onboarding_1">Work at home to more comfort. Make a great projects with this app</string>
@@ -11,18 +11,19 @@
     <!-- *********** Text *********** -->
     <string name="txt_dynamic_text">%s</string>
     <string name="txt_menu">Menu</string>
-    <string name="txt_prix">Prix</string>
-    <string name="txt_name">Hi Oussama</string>
+    <string name="txt_prix">Price</string>
+    <string name="txt_title">Hi</string>
+    <string name="txt_name">oussama</string>
     <string name="txt_amount">1000 D</string>
-    <string name="txt_pay">Pay</string>
+    <string name="txt_pay">to push</string>
     <string name="txt_langauge">Language</string>
     <string name="txt_logout">Logout</string>
-    <string name="txt_history">History</string>
+    <string name="txt_history">historic</string>
     <string name="txt_select_your_languages">Select Your Languages</string>
     <string name="txt_hello">Hello</string>
     <string name="txt_hotel_wallet">Hotel Wallet</string>
     <string name="txt_ingradients">Ingradients</string>
-    <string name="txt_register">Register</string>
+    <string name="txt_register">registration</string>
     <string name="txt_your_first_name">Your First Name</string>
     <string name="txt_your_last_name">Your Last Name</string>
     <string name="txt_email">Email</string>
@@ -32,15 +33,18 @@
     <string name="txt_login">Login</string>
     <string name="txt_forget_password">Forget password?</string>
     <string name="txt_enter_your_email_or_mobile">Enter Your Email Or Mobile</string>
+    <string name="txt_scan">Hotel inscription made easy with just one click</string>
+    <string name="txt_scan_to_login">Go To Login</string>
 
     <!-- *********** Menu *********** -->
     <string name="txt_home">Home</string>
     <string name="txt_category">Category</string>
     <string name="txt_profile">Profile</string>
     <string name="txt_settings">Settings</string>
+    <string name="txt_favorite">Favorite</string>
 
     <!-- *********** Title *********** -->
-    <string name="txt_title_amount">your pay is</string>
+    <string name="txt_title_amount">your balance is</string>
     <string name="txt_Title_service">Services</string>
     <string name="txt_Title_english">English</string>
     <string name="txt_Title_arabic">Arabic</string>
@@ -59,9 +63,8 @@
     <string name="txt_btn_login">Login</string>
     <string name="txt_btn_sing_up">Sing Up</string>
     <string name="txt_btn_register">Register</string>
+    <string name="txt_btn_scan">Scan</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- *********** Message *********** -->
 
 </resources>
