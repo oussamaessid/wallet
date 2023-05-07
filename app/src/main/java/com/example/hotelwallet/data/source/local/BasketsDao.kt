@@ -15,6 +15,8 @@ interface BasketsDao {
     @Query("SELECT * FROM favorite_table")
     fun getAllFavorites(): LiveData<List<Basket>>
 
+    @Query("DELETE FROM favorite_table")
+    suspend fun deleteAll()
 //    @Query("SELECT * FROM favorite_table")
 //    fun getFavorites(): LiveData<List<Basket>>
 //

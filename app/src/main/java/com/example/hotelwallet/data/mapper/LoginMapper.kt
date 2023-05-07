@@ -9,20 +9,26 @@ class LoginMapper @Inject constructor() :
     override fun map(from: UserDto): User {
         return User(
             id = from.id,
-            name = from.name,
+            nom = from.nom,
+            prenom = from.prenom,
             email = from.email,
             solde = from.solde,
-            image = from.image
-        )
+            photo = from.photo,
+            id_hotel = from.id_hotel,
+            statut = from.statut
+            )
     }
 
     override fun mapInverse(from: User): UserDto {
         return UserDto(
             id = from.id,
-            name = from.name,
+            nom = from.nom,
+            prenom = from.prenom,
             email = from.email,
             solde = from.solde,
-            image = from.image
+            photo = from.photo,
+            id_hotel = from.id_hotel,
+            statut = from.statut
         )
     }
 }

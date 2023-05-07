@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hotelwallet.data.source.local.Basket
 import com.example.hotelwallet.databinding.RowItemDetailBinding
-
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 class BasketAdapter(
     private val menuList: List<Basket>,
@@ -31,6 +31,22 @@ class BasketAdapter(
 
                 binding.ivDelete.setOnClickListener {
                     viewModel.deleteFavorite(menuList[position])
+                }
+
+                binding.imageAdd.setOnClickListener {
+                    val count = binding.txtCount.text.toString()
+                    val quant = count.toInt() + 1
+                    binding.txtCount.text = quant.toString()
+                    val prix = price.toInt() * quant
+                    binding.menuPrice.text =  prix.toString()
+                }
+                binding.imageMinus.setOnClickListener {
+                    val count = binding.txtCount.text.toString()
+                    val quanti = count.toInt() - 1
+                    binding.txtCount.text = quanti.toString()
+                    val menupric = binding.menuPrice.text.toString()
+                    val prixx = menupric.toInt() - (price.toInt() * quantity.toInt() )
+                    binding.menuPrice.text =  prixx.toString()
                 }
             }
 

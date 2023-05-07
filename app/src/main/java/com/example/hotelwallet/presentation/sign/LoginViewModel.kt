@@ -8,6 +8,7 @@ import com.example.hotelwallet.domain.model.Message
 import com.example.hotelwallet.domain.model.User
 import com.example.hotelwallet.domain.usecase.login_usecase.LoginUseCase
 import com.example.hotelwallet.domain.usecase.login_usecase.SignUpUseCase
+import com.example.hotelwallet.domain.usecase.token_usecase.SaveTokenUseCase
 import com.example.hotelwallet.utility.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -19,7 +20,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val signUpUseCase: SignUpUseCase,
-
+    private val saveTokenUseCase: SaveTokenUseCase
     ) : ViewModel() {
 
     private val _stateLogin = MutableLiveData<Resource<User>>()
@@ -38,21 +39,29 @@ class LoginViewModel @Inject constructor(
     }
 
     fun signUp(
-        name: String,
+        nom: String,
+        prenom: String,
         email: String,
         password: String,
-        image:String
+        id_hotel: String
     ) {
         viewModelScope.launch {
             signUpUseCase(
-                name,
+                nom,
+                prenom,
                 email,
                 password,
-                image
+                id_hotel
             )
                 .onEach {
                     _stateSignUp.value = it
                 }.launchIn(viewModelScope)
+        }
+    }
+
+    suspend fun saveToken(token: String) {
+        viewModelScope.launch {
+            saveTokenUseCase(token)
         }
     }
 }

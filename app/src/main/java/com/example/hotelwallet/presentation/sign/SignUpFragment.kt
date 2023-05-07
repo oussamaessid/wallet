@@ -19,10 +19,12 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
 ), View.OnClickListener {
 
     private val loginViewModel by activityViewModels<LoginViewModel>()
+    private lateinit var result: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        informationFromIntent()
         lifecycleScope.launchWhenStarted {
             loginViewModel.stateSignUp.observe(viewLifecycleOwner) {
                 when (it) {
@@ -37,7 +39,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
                     is Resource.Error -> {
                         Toast.makeText(
                             requireContext(),
-                            "the user is failed to login",
+                            "the user is failed to register",
                             Toast.LENGTH_LONG
                         ).show()
                     }
@@ -52,35 +54,37 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
     }
 
     private fun signUp(
-        name: String,
+        nom: String,
+        prenom: String,
         email: String,
         password: String,
-        image: String
+        id_hotel: String
     ) {
 
-        loginViewModel.signUp(name, email, password,image)
+        loginViewModel.signUp(nom,prenom,email, password,id_hotel)
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_register -> {
-                if (binding.editName.text.trim().isNotBlank() &&
+                if (binding.editNom.text.trim().isNotBlank() &&
+                    binding.ediPrenom.text.trim().isNotBlank() &&
                     binding.editEmail.text.trim().isNotBlank() &&
-                    binding.editPassword.text.trim().isNotBlank()&&
                     binding.editPassword.text.trim().isNotBlank()
 
                 ) {
                     signUp(
-                        binding.editName.text.toString(),
+                        binding.editNom.text.toString(),
+                        binding.ediPrenom.text.toString(),
                         binding.editEmail.text.toString(),
                         binding.editPassword.text.toString(),
-                        binding.editImage.text.toString()
+                        result
                     )
-                    Log.println(Log.ASSERT, "name", binding.editName.text.toString())
+                    Log.println(Log.ASSERT, "name", binding.editNom.text.toString())
                     Log.println(Log.ASSERT, "email", binding.editEmail.text.toString())
                     Log.println(Log.ASSERT, "password", binding.editPassword.text.toString())
                     val bundle = Bundle()
-                    bundle.putString("name", binding.editName.text.toString())
+                    bundle.putString("name", binding.editNom.text.toString())
                     findNavController().navigate(R.id.action_signUpFragment_to_loginFragment,bundle)
                 }
             }
@@ -88,6 +92,11 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
                 findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
             }
         }
+    }
+
+    private fun informationFromIntent() {
+        val args = this.arguments
+        result = args?.get("RESULT").toString()
     }
 
 }

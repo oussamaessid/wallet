@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_login" />
 
             <EditText
-                android:id="@+id/editName"
+                android:id="@+id/editNom"
                 style="@style/EditText"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="16dp"
@@ -66,6 +66,17 @@
                 android:drawablePadding="16dp"
                 android:hint="@string/txt_your_first_name"
                 app:layout_constraintTop_toBottomOf="@+id/txt_eat_and_meet" />
+
+            <EditText
+                android:id="@+id/ediPrenom"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="18dp"
+                android:drawableStart="@drawable/img_user"
+                android:drawablePadding="16dp"
+                android:hint="@string/txt_your_first_name"
+                app:layout_constraintTop_toBottomOf="@+id/editNom" />
 
 
             <EditText
@@ -78,7 +89,7 @@
                 android:drawablePadding="16dp"
                 android:hint="@string/txt_email"
                 android:inputType="textEmailAddress"
-                app:layout_constraintTop_toBottomOf="@+id/editName" />
+                app:layout_constraintTop_toBottomOf="@+id/ediPrenom" />
 
 
 
@@ -107,18 +118,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/edit_password"
                 app:layout_constraintTop_toTopOf="@+id/edit_password" />
 
-            <EditText
-                android:id="@+id/editImage"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_email"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_email"
-                android:inputType="textEmailAddress"
-                app:layout_constraintTop_toBottomOf="@+id/edit_password" />
-
+<!--            <EditText-->
+<!--                android:id="@+id/editImage"-->
+<!--                style="@style/EditText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_marginTop="18dp"-->
+<!--                android:drawableStart="@drawable/img_image"-->
+<!--                android:drawablePadding="16dp"-->
+<!--                android:hint="@string/txt_email"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/edit_password" />-->
 
 
             <com.google.android.material.button.MaterialButton
@@ -132,7 +142,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 app:backgroundTint="@color/colorCerulean"
-                app:layout_constraintTop_toBottomOf="@+id/editImage" />
+                app:layout_constraintTop_toBottomOf="@+id/img_show_password" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login"

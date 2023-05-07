@@ -19,10 +19,11 @@
 
         <ImageView
             android:id="@+id/imgArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:src="@drawable/img_arrow_left"
-            android:visibility="gone"
+            android:layout_marginStart="8dp"
+            android:visibility="visible"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -33,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:text="@string/txt_title"
             android:textColor="@color/colorWhite"
@@ -58,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:text="@string/txt_title_amount"
             android:textColor="@color/colorWhite"

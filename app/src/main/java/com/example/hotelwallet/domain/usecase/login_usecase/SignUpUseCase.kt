@@ -11,15 +11,17 @@ class SignUpUseCase @Inject constructor(
     private val signRepository: LoginRepository
 ) {
     suspend operator fun invoke(
-        name: String,
+        nom: String,
+        prenom: String,
         email: String,
         password: String,
-        image: String
+        id_hotel: String
     ): Flow<Resource<Message>> =
         signRepository.signUp(
-            name,
+            nom,
+            prenom,
             email,
             password,
-            image
+            id_hotel
         )
 }

@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hotelwallet.domain.model.Category
-import com.example.hotelwallet.domain.model.Gym
-import com.example.hotelwallet.domain.model.MenuItem
+import com.example.hotelwallet.domain.model.*
+import com.example.hotelwallet.domain.usecase.achat_usecase.AchatUseCase
 import com.example.hotelwallet.domain.usecase.category_usecase.GetCategoryUseCase
+import com.example.hotelwallet.domain.usecase.commande_usecase.CommandeUseCase
 import com.example.hotelwallet.domain.usecase.gym_usecase.GetGymUseCase
 import com.example.hotelwallet.domain.usecase.menu_item_usecase.GetMenuItemUseCase
 import com.example.hotelwallet.utility.Resource
@@ -21,10 +21,14 @@ import javax.inject.Inject
 @HiltViewModel
 class GymViewModel @Inject constructor(
     private val getGymUseCase: GetGymUseCase,
+    private val achatUseCase: AchatUseCase
 ) : ViewModel() {
 
     private val _stateCategories = MutableLiveData<Resource<List<Gym>>>()
     val stateCategories: LiveData<Resource<List<Gym>>> get() = _stateCategories
+
+    private val _stateAchat = MutableLiveData<Resource<Achat>>()
+    val stateAchat: LiveData<Resource<Achat>> get() = _stateAchat
 
     fun getCategories(category: String) {
         viewModelScope.launch {
@@ -35,4 +39,12 @@ class GymViewModel @Inject constructor(
         }
     }
 
+    fun getCommande(id_client: Int,id_plan: Int) {
+        viewModelScope.launch {
+            achatUseCase(id_client,id_plan)
+                .onEach {
+                    _stateAchat.value = it
+                }.launchIn(viewModelScope)
+        }
+    }
 }

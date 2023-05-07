@@ -28,6 +28,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
     private lateinit var slideAdapter: WelcomeOnBoardingAdapter
     private var slideList = mutableListOf<WelcomeSlide>()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

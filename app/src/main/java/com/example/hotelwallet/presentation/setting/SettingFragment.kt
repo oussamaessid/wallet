@@ -18,7 +18,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(
         binding.cardViewProfile.setOnClickListener(this)
         binding.cardViewLanguage.setOnClickListener(this)
 
+        setCustomToolbar("name","solde",false,false)
+
+
         binding.customToolbar.txtTitle.text = "Setting"
+        binding.customToolbar.imgBack.setOnClickListener {
+            onBack()
+        }
     }
 
     override fun onClick(view: View?) {

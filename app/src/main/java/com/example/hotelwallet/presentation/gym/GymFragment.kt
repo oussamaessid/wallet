@@ -9,15 +9,12 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentGymBinding
 import com.example.hotelwallet.domain.model.Gym
-import com.example.hotelwallet.domain.model.SalleDeSport
-import com.example.hotelwallet.presentation.menu.MenuViewModel
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import com.example.hotelwallet.utility.Resource
 
@@ -77,6 +74,32 @@ class GymFragment : BaseFragment<FragmentGymBinding>(
         }
     }
 
+    private fun observeAchat(){
+        lifecycleScope.launchWhenStarted {
+            gymViewModel.stateAchat.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Loading -> {
+
+                    }
+                    is Resource.Success -> {
+//                        Snackbar.make(view, it.data.message, Snackbar.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_LONG).show()
+
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(
+                            requireContext(),
+                            " it.data.message",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+
+        }
+    }
+
+
     private fun showCustomDialogBox(message: String?) {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -91,13 +114,22 @@ class GymFragment : BaseFragment<FragmentGymBinding>(
         tvMessage.text = message
 
         btnYes.setOnClickListener {
-            Toast.makeText(requireContext(), "click on Yes", Toast.LENGTH_LONG).show()
-        }
+            observeAchat()
+            ajouterAchat(4,1)
+            dialog.dismiss()        }
 
         btnNo.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    private fun ajouterAchat(
+        id_client: Int,
+        id_plan: Int
+    ) {
+
+        gymViewModel.getCommande(id_client, id_plan)
     }
 
     private fun getMealInformationFromIntent() {

@@ -12,7 +12,7 @@ import com.example.hotelwallet.presentation.basket.BasketViewModel
 
 class FavoriteAdapter(
     private val menuList: List<Favorite>,
-    private val viewModel: BasketViewModel
+    private val viewModel: FavoriteViewModel
 ) : RecyclerView.Adapter<FavoriteAdapter.MenuViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {

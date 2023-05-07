@@ -40,12 +40,13 @@ class LoginRepositoryImpl @Inject constructor(
     }
 
     override suspend fun signUp(
-        name: String,
+        nom: String,
+        prenom: String,
         email: String,
         password: String,
-        image: String
+        id_hotel: String
     ): Flow<Resource<Message>> = flow {
-        val registerRequest = SignUp(name, email, password,image)
+        val registerRequest = SignUp(nom,prenom, email, password,id_hotel)
 
         try {
             emit(Resource.Loading)

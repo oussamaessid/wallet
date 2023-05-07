@@ -21,7 +21,6 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(
 
     private lateinit var idcategory: String
     private val favoriteViewModel by activityViewModels<MenuViewModel>()
-
     private lateinit var menuListAdapter: MenuListAdapter
     private var menuList = mutableListOf<Category>()
 
@@ -37,9 +36,12 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(
             findNavController().navigate(R.id.action_menuFragment_to_detailFragment,bundle)
         }
 
-        binding.customToolbar.imgArrow.isVisible = true
-        binding.customToolbar.imgArrow.setOnClickListener {
+//        setCustomToolbar(name,solde,true)
+
+        binding.customToolbar.imgNotification.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
+
         getMealInformationFromIntent()
         binding.recyclerViewCategories.setHasFixedSize(true)
         binding.recyclerViewCategories.isNestedScrollingEnabled = false
@@ -78,5 +80,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(
     private fun getMealInformationFromIntent() {
         val args = this.arguments
         idcategory = args?.get("id_service").toString()
+//        name = args?.get("name").toString()
+//        solde = args?.get("solde").toString()
     }
 }

@@ -64,6 +64,8 @@
     <string name="txt_btn_sing_up">Sing Up</string>
     <string name="txt_btn_register">Register</string>
     <string name="txt_btn_scan">Scan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- *********** Message *********** -->
 

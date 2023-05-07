@@ -2,6 +2,7 @@ package com.example.hotelwallet.presentation.favorite
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelwallet.data.source.local.Favorite
@@ -16,21 +17,22 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
 ) {
 
     private lateinit var favoriteAdapter: FavoriteAdapter
-    private val basketViewModel: BasketViewModel by viewModels()
+    private val favoriteViewModel: FavoriteViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setCustomToolbar("name","solde",false,false)
 
-        basketViewModel.getallFavorites
-        favoriteAdapter = FavoriteAdapter(emptyList(),basketViewModel)
+        favoriteViewModel.getallFavorites
+        favoriteAdapter = FavoriteAdapter(emptyList(),favoriteViewModel)
         binding.recyclerViewFavorite.setHasFixedSize(true)
         binding.recyclerViewFavorite.isNestedScrollingEnabled = false
         binding.recyclerViewFavorite.adapter = favoriteAdapter
         binding.recyclerViewFavorite.layoutManager = LinearLayoutManager(requireContext())
 
-        basketViewModel.getallFavorites.observe(viewLifecycleOwner) { favorite ->
-            favoriteAdapter = FavoriteAdapter(favorite,basketViewModel)
+        favoriteViewModel.getallFavorites.observe(viewLifecycleOwner) { favorite ->
+            favoriteAdapter = FavoriteAdapter(favorite,favoriteViewModel)
             binding.recyclerViewFavorite.adapter = favoriteAdapter
 
         }

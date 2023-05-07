@@ -3,6 +3,7 @@ package com.example.hotelwallet.presentation.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -25,10 +26,14 @@ class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
     private lateinit var Image: String
     private lateinit var Prix: String
     var totalInCart: Int = 1
-    private val basketViewModel: BasketViewModel by viewModels()
+    private val basketViewModel by activityViewModels<BasketViewModel>()
+    private val favoriteViewModel: FavoriteViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setCustomToolbar("name","solde",false,false)
+
 
         val args = this.arguments
         Id = args?.get("id").toString()
@@ -68,7 +73,7 @@ class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
                 val prix = binding.txtPrice.text.toString()
                 val counts = binding.txtCount.text.toString()
                 val favorite = Favorite(Name,prix, counts, Image)
-                basketViewModel.addFavorite(favorite)
+                favoriteViewModel.addFavorite(favorite)
                 binding.btnSave.setImageResource(R.drawable.img_saved)
                 Snackbar.make(view, "Meal saved", Snackbar.LENGTH_LONG).show()
 
@@ -84,7 +89,7 @@ class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
         }
     }
     private fun isMealSavedInDatabase(): Boolean {
-        return basketViewModel.isMealSavedInDatabase(Name)
+        return favoriteViewModel.isMealSavedInDatabase(Name)
     }
 
 //    private fun saveMeal() {
@@ -104,7 +109,7 @@ class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
     }
 
     private fun deleteMeal() {
-        basketViewModel.deleteMealById(Name)
+        favoriteViewModel.deleteMealById(Name)
     }
 
     override fun onClick(v: View?) {

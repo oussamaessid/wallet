@@ -113,4 +113,19 @@ object AppModule {
     ): LoginRepository =
         LoginRepositoryImpl(api = api, loginMapper = loginMapper, messageMapper = messageMapper)
 
+    @Singleton
+    @Provides
+    fun provideCommandeRepository(
+        api: Api,
+        commandeMapper: CommandeMapper
+    ): AjouterCommandeRepository =
+        AjouterCommandeRepositoryImpl(api = api, commandeMapper = commandeMapper)
+
+    @Singleton
+    @Provides
+    fun provideAchatRepository(
+        api: Api,
+        achatMapper: AchatMapper
+    ): AjouterAchatRepository =
+        AjouterAchatRepositoryImpl(api = api, achatMapper = achatMapper)
 }

@@ -3,12 +3,15 @@ package com.example.hotelwallet.presentation.basket
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import com.example.hotelwallet.data.source.local.AppBasket
 import com.example.hotelwallet.data.source.local.Basket
 import com.example.hotelwallet.data.source.local.Favorite
 import com.example.hotelwallet.data.source.local.FavoritesDao
+import com.example.hotelwallet.domain.model.Category
+import com.example.hotelwallet.utility.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -21,17 +24,10 @@ class BasketViewModel(application: Application) : AndroidViewModel(application) 
 
 
     val allFavorites: LiveData<List<Basket>> = favoriteDao.favoriteDao().getAllFavorites()
-    val getallFavorites: LiveData<List<Favorite>> = favoriteDao.favoritesDao().getFavorites()
 
     fun insertFavorite(favorite: Basket) {
         viewModelScope.launch {
             favoriteDao.favoriteDao().insertFavorite(favorite)
-        }
-    }
-
-    fun addFavorite(favorite: Favorite) {
-        viewModelScope.launch {
-            favoriteDao.favoritesDao().addFavorite(favorite)
         }
     }
 
@@ -41,25 +37,9 @@ class BasketViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun deleteFavorites(favorite: Favorite) {
+    fun deleteAll(){
         viewModelScope.launch {
-            favoriteDao.favoritesDao().deleteFavorite(favorite)
-        }
-    }
-    fun isMealSavedInDatabase(name: String): Boolean {
-        var meal: Favorite? = null
-        runBlocking(Dispatchers.IO) {
-            meal = favoriteDao.favoritesDao().getMealById(name)
-        }
-        if (meal == null)
-            return false
-        return true
-
-    }
-
-    fun deleteMealById(name: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            favoriteDao.favoritesDao().deleteMealById(name)
+            favoriteDao.favoriteDao().deleteAll()
         }
     }
 

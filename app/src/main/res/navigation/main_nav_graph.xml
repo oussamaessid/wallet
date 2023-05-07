@@ -139,6 +139,9 @@
         <action
             android:id="@+id/action_serviceFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_serviceFragment_to_gymFragment"
+            app:destination="@id/gymFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"

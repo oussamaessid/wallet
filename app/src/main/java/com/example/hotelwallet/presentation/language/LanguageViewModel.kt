@@ -2,8 +2,8 @@ package com.example.hotelwallet.presentation.language
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hotelwallet.domain.usecase.language_usecase.GetLanguageUseCase
-import com.example.hotelwallet.domain.usecase.language_usecase.SaveLanguageUseCase
+import com.example.hotelwallet.domain.usecase.token_usecase.GetTokenUseCase
+import com.example.hotelwallet.domain.usecase.token_usecase.SaveTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LanguageViewModel @Inject constructor(
-    private val saveLanguageUseCase: SaveLanguageUseCase,
-    private val getLanguageUseCase: GetLanguageUseCase
+    private val saveLanguageUseCase: SaveTokenUseCase,
+    private val getLanguageUseCase: GetTokenUseCase
 ) : ViewModel() {
 
     private val _stateLanguage = MutableStateFlow<String>("")

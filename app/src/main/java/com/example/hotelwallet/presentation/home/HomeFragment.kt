@@ -49,8 +49,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             }
         }
 
-        binding.customToolbar.txtTitleName.text = name
-        binding.customToolbar.txtAmount.text = solde
+          setCustomToolbar(name,solde,true,true)
+//        binding.customToolbar.txtTitleName.text = name
+//        binding.customToolbar.txtAmount.text = solde
 
         binding.customToolbar.imgNotification.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)

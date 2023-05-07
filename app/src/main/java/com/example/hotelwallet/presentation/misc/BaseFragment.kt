@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
@@ -27,6 +28,10 @@ abstract class BaseFragment<VB : ViewBinding>(
         return binding.root
     }
 
+    fun setCustomToolbar(name:String , solde:String ,isCustomToolbar: Boolean,imgArrow: Boolean){
+        (activity as MainActivity).setCustomToolbar(name,solde,isCustomToolbar,imgArrow)
+
+    }
     fun setLoading(loading: Boolean) {
         (activity as MainActivity).setLoading(loading)
     }
@@ -41,7 +46,6 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     fun onBack() {
         requireActivity().onBackPressed()
-        
     }
 
     override fun onDestroy() {

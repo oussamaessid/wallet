@@ -38,6 +38,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
             findNavController().navigate(R.id.action_detailFragment_to_detailMenuFragment,bundle)
         }
 
+
         setBottomNavigation(true)
         val args = this.arguments
         categoryName = args?.get("category_name").toString()

@@ -2,8 +2,11 @@ package com.example.hotelwallet.domain.model
 
 data class User(
     val id: Int,
-    val name: String,
-    val email: String,
+    val nom:String,
+    val prenom:String,
+    val email:String,
+    val id_hotel: String,
+    val statut: String,
     val solde:String,
-    val image:String
+    val photo:String
 )

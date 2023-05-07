@@ -34,10 +34,12 @@ class ScannerFragment : BaseFragment<FragmentScannerBinding>(
                 startActivity(intent)
             } else {
                 binding.txtResult.isVisible = true
-                binding.txtResult.text = result.toString()
+                binding.txtResult.text = result
                 binding.btnScan.text = getString(R.string.txt_scan_to_login)
                 binding.btnScan.setOnClickListener {
-                    findNavController().navigate(R.id.action_scannerFragment_to_loginFragment)
+                    val bundle = Bundle()
+                    bundle.putString("RESULT", result)
+                    findNavController().navigate(R.id.action_scannerFragment_to_loginFragment,bundle)
                 }
             }
         }

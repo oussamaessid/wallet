@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.ActivityMainBinding
@@ -24,9 +25,25 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.background = null
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
 
-
     }
 
+    fun setCustomToolbar(name:String , solde:String ,isCustomToolbar: Boolean , imgArrow : Boolean){
+        if (isCustomToolbar) {
+                binding.customToolbar.root.visibility = View.VISIBLE
+                binding.customToolbar.txtTitleName.text = name
+                binding.customToolbar.txtAmount.text = solde
+            if (imgArrow) {
+                binding.customToolbar.imgArrow.visibility = View.VISIBLE
+                binding.customToolbar.imgArrow.setOnClickListener {
+                    onBackPressed()
+                }
+            }else
+                binding.customToolbar.imgArrow.visibility = View.INVISIBLE
+        }
+        else {
+            binding.customToolbar.root.visibility = View.GONE
+        }
+    }
     fun setBottomNavigation(isNavigation: Boolean ){
         if (isNavigation) {
             binding.bottomNavContent.visibility = View.VISIBLE

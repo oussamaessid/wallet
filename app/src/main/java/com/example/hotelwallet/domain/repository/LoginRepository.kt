@@ -9,10 +9,11 @@ interface LoginRepository {
     suspend fun getLogin(email: String, password: String): Flow<Resource<User>>
 
     suspend fun signUp(
-        name: String,
+        nom: String,
+        prenom: String,
         email: String,
         password: String,
-        image: String
+        id_hotel: String
     ): Flow<Resource<Message>>
 
 }
