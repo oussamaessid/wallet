@@ -9,12 +9,14 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentScannerBinding
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ScannerFragment : BaseFragment<FragmentScannerBinding>(
-    FragmentScannerBinding::inflate
+    FragmentScannerBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration()
 ) {
 
     private lateinit var result: String

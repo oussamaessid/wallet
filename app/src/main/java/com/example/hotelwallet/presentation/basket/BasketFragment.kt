@@ -4,12 +4,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hotelwallet.R
 import com.example.hotelwallet.data.source.local.Basket
 import com.example.hotelwallet.databinding.FragmentBasketBinding
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
 
 class BasketFragment : BaseFragment<FragmentBasketBinding>(
-    FragmentBasketBinding::inflate
+    FragmentBasketBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration(
+        visibility = View.GONE,
+        btnBackVisibility = View.VISIBLE,
+        title = R.string.txt_title_service
+    )
 ) {
 
     private lateinit var detailMenuAdapter: BasketAdapter

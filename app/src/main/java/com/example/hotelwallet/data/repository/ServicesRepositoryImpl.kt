@@ -15,13 +15,13 @@ class ServicesRepositoryImpl @Inject constructor(
     private val api: Api,
     private val serviceMapper: ServiceMapper,
 ) : ServiceRepository {
-    override suspend fun getServices(): Flow<Resource<List<Services>>> = flow {
+    override suspend fun getServicesByHotelId(hotelId: Int): Flow<Resource<List<Services>>> = flow {
         try {
             emit(Resource.Loading)
-            val categoriesResponse = serviceMapper.mapList(
-                api.getServices().message
+            val servicesResponse = serviceMapper.mapList(
+                api.getServicesByHotel(hotelId).service
             )
-            emit(Resource.Success(categoriesResponse))
+            emit(Resource.Success(servicesResponse))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred."))
         } catch (e: IOException) {

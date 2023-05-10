@@ -26,7 +26,7 @@
     <color name="colorAstronautBlue">#024662</color>
     <color name="colorAstronautBlue_50">#80024662</color>
     <color name="colorMirage_75">#BF1C2A39</color>
-    <color name="colorCerulean">#FF04b9d4</color>
+    <color name="colorCerulean">#FF25ACE0</color>
     <color name="colorCerulean_50">#8004B9D4</color>
     <color name="colorMirage_50">#801C2A39</color>
     <color name="colorAquamarineBlue">#74ddd4</color>
@@ -46,5 +46,6 @@
     <color name="colorJaffa">#FFF68A4C</color>
     <color name="transparent">#00ffffff</color>
     <color name="mine_shaft">#232323</color>
-
+    <color name="concrete">#FFF3F3F3</color>
+    <color name="bonjour">#FFF2F0F2</color>
 </resources>

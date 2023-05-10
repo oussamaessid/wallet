@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentResultQrCodeBinding
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import com.google.zxing.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 @AndroidEntryPoint
 class ResultQrCodeFragment : ZXingScannerView.ResultHandler, BaseFragment<FragmentResultQrCodeBinding>(
-    FragmentResultQrCodeBinding::inflate
+    FragmentResultQrCodeBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration()
 ) {
 
     var scannerView: ZXingScannerView? = null

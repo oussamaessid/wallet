@@ -2,15 +2,16 @@
     <!-- Base application theme. -->
     <style name="Theme.HotelWallet" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorDodgerBlue</item>
+        <item name="colorPrimary">@color/colorCerulean</item>
         <item name="colorPrimaryVariant">@color/colorCerulean</item>
         <item name="colorOnPrimary">@color/colorWhite</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/colorEmerald</item>
-        <item name="colorSecondaryVariant">@color/colorSushi</item>
+        <item name="colorSecondary">@color/colorCerulean</item>
+        <item name="colorSecondaryVariant">@color/colorCerulean</item>
         <item name="colorOnSecondary">@color/colorBlack</item>
+        <item name="disabledColor">@color/boulder</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 

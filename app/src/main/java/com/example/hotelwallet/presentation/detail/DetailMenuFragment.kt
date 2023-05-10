@@ -10,13 +10,15 @@ import com.example.hotelwallet.R
 import com.example.hotelwallet.data.source.local.Basket
 import com.example.hotelwallet.data.source.local.Favorite
 import com.example.hotelwallet.databinding.FragmentDetailMenuBinding
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.basket.BasketViewModel
 import com.example.hotelwallet.presentation.favorite.FavoriteViewModel
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 
 class DetailMenuFragment : BaseFragment<FragmentDetailMenuBinding>(
-    FragmentDetailMenuBinding::inflate
+    FragmentDetailMenuBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration()
 ), View.OnClickListener {
 
     private lateinit var Id: String

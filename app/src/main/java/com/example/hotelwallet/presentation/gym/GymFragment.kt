@@ -9,21 +9,24 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentGymBinding
 import com.example.hotelwallet.domain.model.Gym
-import com.example.hotelwallet.domain.model.SalleDeSport
-import com.example.hotelwallet.presentation.menu.MenuViewModel
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import com.example.hotelwallet.utility.Resource
 
 
 class GymFragment : BaseFragment<FragmentGymBinding>(
-    FragmentGymBinding::inflate
+    FragmentGymBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration(
+        visibility = View.VISIBLE,
+        btnBackVisibility = View.VISIBLE,
+        title = R.string.txt_title_service
+    )
 ) {
 
     private var menuList = mutableListOf<Gym>()

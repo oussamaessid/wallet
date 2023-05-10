@@ -5,12 +5,11 @@
     <item
         android:id="@+id/homeFragment"
         android:title="Home"
-        android:icon="@drawable/ic_home"
-        />
+        android:icon="@drawable/ic_home" />
 
     <item
         android:id="@+id/serviceFragment"
-        android:title="@string/txt_Title_service"
+        android:title="@string/txt_title_service"
         android:icon="@drawable/ic_category" />
 
     <item android:id="@+id/placeholder"
@@ -19,7 +18,7 @@
     <item
         android:id="@+id/favoriteFragment"
         android:title="@string/txt_favorite"
-        android:icon="@drawable/ic_person" />
+        android:icon="@drawable/img_favorite" />
 
     <item
         android:id="@+id/settingFragment"

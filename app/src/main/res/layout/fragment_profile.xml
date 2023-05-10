@@ -6,161 +6,166 @@
     android:layout_height="match_parent"
     tools:context=".presentation.profile.ProfileFragment">
 
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/main_toolbar" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <View
-                android:id="@+id/background_profile"
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:background="@color/colorCerulean"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
             <ImageView
-                android:id="@+id/img_user"
-                android:layout_width="83dp"
-                android:layout_height="83dp"
-                app:layout_constraintBottom_toBottomOf="@+id/background_profile"
+                android:id="@+id/imgUser"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/background_profile"
-                android:src="@drawable/img_profile" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/img_camera"
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_camera"
-                app:layout_constraintBottom_toBottomOf="@+id/img_user"
-                app:layout_constraintEnd_toEndOf="@+id/img_user" />
+                android:background="@drawable/circle_orange"
+                android:backgroundTint="@color/colorCerulean"
+                android:padding="6dp"
+                android:src="@drawable/img_camera_small"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUser"
+                app:layout_constraintEnd_toEndOf="@+id/imgUser"
+                app:layout_constraintTop_toBottomOf="@+id/imgUser" />
 
-            <EditText
-                android:id="@+id/edFirstName"
-                style="@style/EditText"
+            <TextView
+                android:id="@+id/txtUserInformation"
+                style="@style/TextViewStyle.Bold.20"
                 android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_user"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_your_first_name"
-                app:layout_constraintTop_toBottomOf="@+id/img_user" />
-
-            <EditText
-                android:id="@+id/edLastLName"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_user"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_your_last_name"
-                app:layout_constraintTop_toBottomOf="@+id/edFirstName" />
-
-            <EditText
-                android:id="@+id/edit_email"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_email"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_email"
-                android:inputType="textEmailAddress"
-                app:layout_constraintTop_toBottomOf="@+id/edLastLName" />
-
-            <EditText
-                android:id="@+id/edit_phone"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="18dp"
-                android:drawableStart="@drawable/img_phone"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_phone"
-                android:inputType="phone"
-                app:layout_constraintTop_toBottomOf="@+id/edit_email" />
-
-            <EditText
-                android:id="@+id/edit_password"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:drawableStart="@drawable/img_lock"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_password"
-                android:inputType="textPassword"
-                android:paddingEnd="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/edit_phone" />
+                android:text="@string/txt_user_info"
+                app:layout_constraintTop_toBottomOf="@+id/imgUser" />
 
-            <ImageView
-                android:id="@+id/img_show_password"
+            <TextView
+                android:id="@+id/txtLabelLastName"
+                style="@style/TextViewStyle.16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/txt_last_name"
+                android:textColor="@color/boulder"
+                app:layout_constraintStart_toStartOf="@+id/linearLastName"
+                app:layout_constraintTop_toBottomOf="@+id/txtUserInformation" />
+
+            <LinearLayout
+                android:id="@+id/linearLastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="4dp"
-                android:src="@drawable/img_show_password"
-                app:layout_constraintBottom_toBottomOf="@+id/edit_password"
-                app:layout_constraintEnd_toEndOf="@+id/edit_password"
-                app:layout_constraintTop_toTopOf="@+id/edit_password" />
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/linearFirstName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLabelLastName">
 
-            <EditText
-                android:id="@+id/edit_confirm_password"
-                style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="32dp"
-                android:drawableStart="@drawable/img_lock"
-                android:drawablePadding="16dp"
-                android:hint="@string/txt_confirm_password"
-                android:inputType="textPassword"
-                android:paddingEnd="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/edit_password" />
+                <TextView
+                    android:id="@+id/txtLastName"
+                    style="@style/TextViewStyle.Medium.18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/txt_last_name" />
 
-            <ImageView
-                android:id="@+id/img_show_confirm_password"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/concrete" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtLabelFirstName"
+                style="@style/TextViewStyle.16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="4dp"
-                android:src="@drawable/img_show_password"
-                app:layout_constraintBottom_toBottomOf="@+id/edit_confirm_password"
-                app:layout_constraintEnd_toEndOf="@+id/edit_confirm_password"
-                app:layout_constraintTop_toTopOf="@+id/edit_confirm_password"
-                tools:ignore="ContentDescription" />
+                android:layout_marginTop="24dp"
+                android:text="@string/txt_first_name"
+                android:textColor="@color/boulder"
+                app:layout_constraintStart_toStartOf="@+id/linearFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/txtUserInformation" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_save"
-                style="@style/HotelWalletButtonMain"
+            <LinearLayout
+                android:id="@+id/linearFirstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLastName"
+                app:layout_constraintTop_toBottomOf="@+id/txtLabelLastName">
+
+                <TextView
+                    android:id="@+id/txtFirstName"
+                    style="@style/TextViewStyle.Medium.18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/txt_first_name" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/concrete" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtLabelEmail"
+                style="@style/TextViewStyle.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/txt_email"
+                android:textColor="@color/boulder"
+                app:layout_constraintStart_toStartOf="@+id/linearEmail"
+                app:layout_constraintTop_toBottomOf="@+id/linearFirstName" />
+
+            <LinearLayout
+                android:id="@+id/linearEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="32dp"
-                android:text="txt_btn_save"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                app:backgroundTint="@color/colorCerulean"
-                app:layout_constraintTop_toBottomOf="@+id/edit_confirm_password" />
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLabelEmail">
+
+                <TextView
+                    android:id="@+id/txtEmail"
+                    style="@style/TextViewStyle.Medium.18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/txt_email" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/concrete" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtMemberSince"
+                style="@style/TextViewStyle.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearEmail"
+                tools:text="@string/txt_member_since" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

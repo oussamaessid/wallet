@@ -3,29 +3,29 @@ package com.example.hotelwallet.presentation.menu
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.hotelwallet.databinding.RowItemCategoryBinding
-import com.example.hotelwallet.domain.model.Category
+import coil.load
+import com.example.hotelwallet.R
+import com.example.hotelwallet.databinding.RowItemMenuBinding
+import com.example.hotelwallet.domain.model.Menu
 
 class MenuListAdapter(
-    private val favoriteList: List<Category>,
-    private val listener: (Category) -> Unit
-) : RecyclerView.Adapter<MenuListAdapter.FavoriteViewHolder>() {
+    private val menuList: List<Menu>,
+    private val listener: (Menu) -> Unit
+) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
-        val binding = RowItemCategoryBinding
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
+        val binding = RowItemMenuBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        return FavoriteViewHolder(binding)
+        return MenuViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         with(holder) {
-            with(favoriteList[position]) {
-                binding.txtCategoryName.text = nom
-                Glide.with(itemView)
-                    .load(description)
-                    .into(binding.imgCategory)
-
+            with(menuList[position]) {
+                binding.txtMenuTitle.text = nom
+                binding.imgMenu.load(description) {
+                    placeholder(R.drawable.img_logo_default)
+                }
                 itemView.setOnClickListener {
                     listener(this)
                 }
@@ -34,10 +34,10 @@ class MenuListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return favoriteList.size
+        return menuList.size
     }
 
-    inner class FavoriteViewHolder(val binding: RowItemCategoryBinding) :
+    inner class MenuViewHolder(val binding: RowItemMenuBinding) :
         RecyclerView.ViewHolder(binding.root)
 
 }

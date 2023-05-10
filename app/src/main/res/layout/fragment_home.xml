@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <include
-                android:id="@+id/customToolbar"
-                layout="@layout/toolbar_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/toolBar"
+                layout="@layout/main_toolbar" />
+
+            <TextView
+                android:id="@+id/txtUserName"
+                style="@style/TextViewStyle.Bold.17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/toolBar"
+                tools:text="@string/txt_hi" />
+
+            <TextView
+                android:id="@+id/txtBalance"
+                style="@style/TextViewStyle.Medium.16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtUserName"
+                tools:text="@string/txt_your_balance" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
@@ -42,7 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/customToolbar">
+                app:layout_constraintTop_toBottomOf="@+id/txtBalance">
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
@@ -56,52 +62,50 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSlider"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
-                android:id="@+id/imageSlider"
-                app:iss_auto_cycle="true"
-                app:iss_delay="0"
                 android:layout_marginHorizontal="16dp"
-                app:iss_placeholder="@android:color/darker_gray"
-                app:iss_error_image="@android:color/darker_gray"
+                app:iss_auto_cycle="true"
                 app:iss_corner_radius="5"
+                app:iss_delay="0"
+                app:iss_error_image="@android:color/darker_gray"
+                app:iss_period="1000"
+                app:iss_placeholder="@android:color/darker_gray"
                 app:iss_selected_dot="@drawable/default_selected_dot"
                 app:iss_unselected_dot="@drawable/default_unselected_dot"
-                app:iss_period="1000"
-                app:layout_constraintTop_toBottomOf="@id/materialCardView"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialCardView"
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/txtHomeServices"
-                android:layout_width="match_parent"
+                style="@style/TextViewStyle.Bold.24"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_Title_service"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp"
-                android:fontFamily="@font/roboto_bold"
-                android:layout_marginHorizontal="32dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/txt_title_service"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageSlider"/>
+                app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewHome"
+                android:id="@+id/recyclerViewService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/row_item_category"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHomeServices"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtHomeServices"
+                app:spanCount="2"
+                tools:listitem="@layout/row_item_category" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.core.widget.NestedScrollView>

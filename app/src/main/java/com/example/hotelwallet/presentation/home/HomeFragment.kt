@@ -1,7 +1,6 @@
 package com.example.hotelwallet.presentation.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -13,54 +12,46 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentHomeBinding
 import com.example.hotelwallet.domain.model.Services
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
-import com.example.hotelwallet.utility.CATEGORY_EAT
+import com.example.hotelwallet.presentation.profile.ProfileViewModel
+import com.example.hotelwallet.presentation.service.ServiceListAdapter
+import com.example.hotelwallet.presentation.service.ServicesViewModel
 import com.example.hotelwallet.utility.Resource
 import java.util.*
 
-
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
-    FragmentHomeBinding::inflate
+    FragmentHomeBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration(
+        visibility = View.VISIBLE,
+        logoVisibility = View.VISIBLE
+    )
 ) {
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
-    private lateinit var homeAdapter: HomeAdapter
-    private var menuList = mutableListOf<Services>()
-    val imageList = ArrayList<SlideModel>()
-    private lateinit var name: String
-    private lateinit var solde: String
+    private val serviceViewModel by activityViewModels<ServicesViewModel>()
+    private val profileViewModel by activityViewModels<ProfileViewModel>()
+
+    private lateinit var serviceAdapter: ServiceListAdapter
+    private var serviceList = mutableListOf<Services>()
+    private val imageList = ArrayList<SlideModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = this.arguments
-        name = args?.get("name").toString()
-        solde = args?.get("solde").toString()
-
         setBottomNavigation(true)
-        homeAdapter = HomeAdapter(menuList) { type ->
+        observeProfile()
+
+        serviceAdapter = ServiceListAdapter(serviceList) { service ->
             val bundle = Bundle()
-            bundle.putString("id_service", type.id_service.toString())
-            Log.println(Log.ASSERT, "if_category1", type.id_service.toString())
-            if (type.type.toInt() == CATEGORY_EAT) {
-                findNavController().navigate(R.id.action_homeFragment_to_menuFragment, bundle)
-            } else {
-                findNavController().navigate(R.id.action_homeFragment_to_gymFragment, bundle)
-            }
+            bundle.putInt("service_id", service.id)
+            bundle.putString("service_name", service.nom)
+            findNavController().navigate(R.id.action_homeFragment_to_menuFragment, bundle)
         }
 
-        binding.customToolbar.txtTitleName.text = name
-        binding.customToolbar.txtAmount.text = solde
-
-        binding.customToolbar.imgNotification.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-        }
-
-
-        binding.recyclerViewHome.setHasFixedSize(true)
-        binding.recyclerViewHome.isNestedScrollingEnabled = false
-        binding.recyclerViewHome.adapter = homeAdapter
-        homeViewModel.getServices()
+        binding.recyclerViewService.setHasFixedSize(true)
+        binding.recyclerViewService.isNestedScrollingEnabled = false
+        binding.recyclerViewService.adapter = serviceAdapter
+        serviceViewModel.getServicesByHotelId(1)
         observeServices()
 
         imageList.clear()
@@ -92,17 +83,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     private fun observeServices() {
         lifecycleScope.launchWhenStarted {
-            homeViewModel.stateServices.observe(viewLifecycleOwner) {
+            serviceViewModel.stateServices.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Loading -> {
                         setLoading(true)
                     }
                     is Resource.Success -> {
                         it.data.apply {
-                            menuList.clear()
-                            menuList.addAll(this)
-                            homeAdapter.notifyDataSetChanged()
-
+                            serviceList.clear()
+                            serviceList.addAll(this)
+                            serviceAdapter.notifyDataSetChanged()
                         }
                         setLoading(false)
                     }
@@ -114,12 +104,40 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         }
     }
 
+    private fun observeProfile() {
+        lifecycleScope.launchWhenStarted {
+            profileViewModel.stateProfile.collect {
+                when (it) {
+                    is Resource.Loading -> setLoading(true)
+                    is Resource.Success -> {
+                        it.data.apply {
+                            binding.txtUserName.text = getString(R.string.txt_hi).format(lastName)
+                            binding.txtBalance.text =
+                                getString(R.string.txt_your_balance).format(balance)
+                            ToolbarConfiguration(
+                                visibility = View.VISIBLE,
+                                logoVisibility = View.VISIBLE,
+                                rightImageConfig = photo,
+                                rightImageClick = { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
+                            ).updateToolbarLayout()
+                        }
+                        setLoading(false)
+                    }
+                    is Resource.Error -> {
+                        setErrorAlert(errorMsg = it.message)
+                        setLoading(false)
+                    }
+                    else -> Unit
+                }
+            }
+        }
+    }
 
     private fun filterList(query: String?) {
 
         if (query != null) {
             val filteredList = ArrayList<Services>()
-            for (i in menuList) {
+            for (i in serviceList) {
                 if (i.nom.lowercase(Locale.ROOT).contains(query)) {
                     filteredList.add(i)
                 }
@@ -128,7 +146,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             if (filteredList.isEmpty()) {
                 Toast.makeText(requireContext(), "No Data found", Toast.LENGTH_SHORT).show()
             } else {
-                homeAdapter.setFilteredList(filteredList)
+//                serviceAdapter.setFilteredList(filteredList)
             }
         }
     }

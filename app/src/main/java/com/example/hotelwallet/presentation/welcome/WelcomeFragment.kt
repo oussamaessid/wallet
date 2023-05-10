@@ -1,32 +1,52 @@
 package com.example.hotelwallet.presentation.welcome
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager.widget.ViewPager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentWelcomeBinding
-import com.example.hotelwallet.domain.model.WelcomeSlide
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.language.LanguageViewModel
 import com.example.hotelwallet.presentation.misc.BaseFragment
-import com.example.hotelwallet.utility.KEY_Arabic
-import com.example.hotelwallet.utility.KEY_ENGLISH
+import com.zeugmasolutions.localehelper.Locales
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
-    FragmentWelcomeBinding::inflate
+    FragmentWelcomeBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration()
 ), View.OnClickListener {
 
-    private val languageViewModel by viewModels<LanguageViewModel>()
-    private lateinit var slideAdapter: WelcomeOnBoardingAdapter
-    private var slideList = mutableListOf<WelcomeSlide>()
+    private val languageViewModel by activityViewModels<LanguageViewModel>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        lifecycleScope.launchWhenStarted {
+            appViewModel.stateLang.observe(viewLifecycleOwner) { lang ->
+                Log.d("***Lang :", "$lang")
+                if (!lang.isNullOrEmpty()) {
+                    findNavController().popBackStack(R.id.welcomeFragment, true)
+                    appViewModel.stateToken.observe(viewLifecycleOwner) { token ->
+                        Log.d("***Token :", "$token")
+                        if (!token.isNullOrEmpty()) {
+                            findNavController().navigate(R.id.homeFragment)
+                        } else {
+                            findNavController().navigate(R.id.loginFragment)
+                        }
+                    }
+                }
+            }
+        }
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,25 +56,16 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
         binding.btnArabic.setOnClickListener(this)
     }
 
-
-    private fun setLocal(language: String) {
-        val metrics = resources.displayMetrics
-        val configuration = resources.configuration
-        lifecycleScope.launch {
-            languageViewModel.saveLanguage(language)
-            configuration.setLocale(Locale(language))
-            resources.updateConfiguration(configuration, metrics)
-            onConfigurationChanged(configuration)
-        }
-    }
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_english -> {
-                setLocal(KEY_ENGLISH)
+                setLanguage(Locales.English)
+                languageViewModel.saveLanguage(Locales.English.language)
                 findNavController().navigate(R.id.action_welcomeFragment_to_welcomeOnBoardingFragment)
             }
             R.id.btn_arabic -> {
-                setLocal(KEY_Arabic)
+                setLanguage(Locales.Arabic)
+                languageViewModel.saveLanguage(Locales.Arabic.language)
                 findNavController().navigate(R.id.action_welcomeFragment_to_welcomeOnBoardingFragment)
             }
         }

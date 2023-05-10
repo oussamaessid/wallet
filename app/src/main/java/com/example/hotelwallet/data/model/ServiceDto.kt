@@ -1,7 +1,10 @@
 package com.example.hotelwallet.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class ServiceDto (
-    val id_service: Int,
+    @SerializedName("id_service")
+    val id: Int,
     val nom: String,
     val description: String,
     val image: String,

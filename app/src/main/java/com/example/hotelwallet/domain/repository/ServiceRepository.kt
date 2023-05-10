@@ -5,5 +5,5 @@ import com.example.hotelwallet.utility.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface ServiceRepository {
-    suspend fun getServices(): Flow<Resource<List<Services>>>
+    suspend fun getServicesByHotelId(hotelId: Int): Flow<Resource<List<Services>>>
 }

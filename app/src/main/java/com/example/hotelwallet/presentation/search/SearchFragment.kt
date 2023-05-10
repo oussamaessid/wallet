@@ -2,21 +2,23 @@ package com.example.hotelwallet.presentation.search
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentSearchBinding
 import com.example.hotelwallet.domain.model.Service
-import com.example.hotelwallet.presentation.home.HomeAdapter
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
-import com.example.hotelwallet.utility.CATEGORY_EAT
+import com.example.hotelwallet.presentation.service.ServiceListAdapter
 import java.util.*
 
-
 class SearchFragment : BaseFragment<FragmentSearchBinding>(
-    FragmentSearchBinding::inflate
+    FragmentSearchBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration(
+        visibility = View.VISIBLE,
+        btnBackVisibility = View.VISIBLE,
+        title = R.string.txt_title_service
+    )
 ) {
-    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var serviceListAdapter: ServiceListAdapter
     private var menuList = mutableListOf<Service>()
     private lateinit var query : String
 
@@ -41,7 +43,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         binding.recyclerViewService.setHasFixedSize(true)
         binding.recyclerViewService.isNestedScrollingEnabled = false
         setSlideList()
-        binding.recyclerViewService.adapter = homeAdapter
+        binding.recyclerViewService.adapter = serviceListAdapter
 
 //        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 //            override fun onQueryTextSubmit(query: String): Boolean {

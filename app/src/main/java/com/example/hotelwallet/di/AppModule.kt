@@ -6,12 +6,11 @@ import androidx.room.Room
 import com.example.hotelwallet.data.mapper.*
 import com.example.hotelwallet.data.repository.*
 import com.example.hotelwallet.data.source.local.AppBasket
+import com.example.hotelwallet.data.source.local.AppDataStoreManager
 import com.example.hotelwallet.data.source.local.BasketsDao
 import com.example.hotelwallet.data.source.local.FavoritesDao
-import com.example.hotelwallet.data.source.local.datastore.AppDataStoreManager
 import com.example.hotelwallet.data.source.remote.Api
 import com.example.hotelwallet.data.source.remote.HotelApi
-import com.example.hotelwallet.domain.model.Gym
 import com.example.hotelwallet.domain.repository.*
 import com.example.hotelwallet.utility.BASE_URL
 import com.example.hotelwallet.utility.BASE_URL1
@@ -57,6 +56,7 @@ object AppModule {
     fun provideFavoritesDao(appDatabase: AppBasket): FavoritesDao {
         return appDatabase.favoritesDao()
     }
+
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppBasket {
@@ -74,19 +74,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideCategoryRepository(
+    fun provideMenuRepository(
         api: Api,
-        categoryMapper: CategoryMapper
-    ): CategoryRepository =
-        CategoryRepositoryImpl(api = api, categoryMapper = categoryMapper)
-
-    @Singleton
-    @Provides
-    fun provideMenuItemRepository(
-        api: Api,
-        menuItemMapper: MenuItemMapper
+        menuMapper: MenuMapper
     ): MenuRepository =
-        MenuItemRepositoryImpl(api = api, menuItemMapper = menuItemMapper)
+        MenuRepositoryImpl(api = api, menuMapper = menuMapper)
 
     @Singleton
     @Provides
@@ -108,9 +100,30 @@ object AppModule {
     @Provides
     fun provideLoginRepository(
         api: Api,
-        loginMapper: LoginMapper,
-        messageMapper: MessageMapper
-    ): LoginRepository =
-        LoginRepositoryImpl(api = api, loginMapper = loginMapper, messageMapper = messageMapper)
+        userMapper: UserMapper,
+        messageMapper: MessageMapper,
+        appDataStore: AppDataStore
+    ): AuthenticationRepository =
+        AuthenticationRepositoryImpl(
+            api = api,
+            userMapper = userMapper,
+            messageMapper = messageMapper,
+            dataStore = appDataStore
+        )
 
+    @Singleton
+    @Provides
+    fun provideProfileRepository(
+        api: Api,
+        userMapper: UserMapper,
+        appDataStore: AppDataStore
+    ): ProfileRepository =
+        ProfileRepositoryImpl(api = api, userMapper = userMapper, dataStore = appDataStore)
+
+    @Singleton
+    @Provides
+    fun provideLanguageRepository(
+        appDataStore: AppDataStore
+    ): LanguageRepository =
+        LanguageRepositoryImpl(dataStore = appDataStore)
 }

@@ -1,29 +1,25 @@
 package com.example.hotelwallet.presentation.welcome
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentWelcomeOnBoardingBinding
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.domain.model.WelcomeSlide
-import com.example.hotelwallet.presentation.language.LanguageViewModel
 import com.example.hotelwallet.presentation.misc.BaseFragment
-import com.example.hotelwallet.utility.KEY_ENGLISH
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>(
-    FragmentWelcomeOnBoardingBinding::inflate
+    FragmentWelcomeOnBoardingBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration()
 ), View.OnClickListener {
 
     private lateinit var slideAdapter: WelcomeOnBoardingAdapter
     private var slideList = mutableListOf<WelcomeSlide>()
-    private val languageViewModel by viewModels<LanguageViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,8 +60,7 @@ class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
-            ) {
-            }
+            ) {}
 
             override fun onPageSelected(position: Int) {
                 if (position == slideList.size - 1) {
@@ -87,7 +82,7 @@ class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>
                 binding.viewPager.currentItem = binding.viewPager.currentItem + 1
             }
             R.id.btnSkip -> {
-                findNavController().navigate(R.id.action_welcomeOnBoardingFragment_to_scannerFragment)
+                findNavController().navigate(R.id.action_welcomeOnBoardingFragment_to_Login)
             }
         }
     }

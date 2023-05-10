@@ -13,13 +13,14 @@
     <string name="txt_dynamic_text">%s</string>
     <string name="txt_menu">قائمة طعام</string>
     <string name="txt_prix">سعر</string>
-    <string name="txt_title">أهلاً</string>
+    <string name="txt_hi">أهلاً %s</string>
+    <string name="txt_your_balance">رصيدك %s</string>
     <string name="txt_name">oussama</string>
     <string name="txt_amount">1000 D</string>
     <string name="txt_pay">دفع</string>
     <string name="txt_langauge">لغة</string>
     <string name="txt_logout">تسجيل خروج</string>
-    <string name="txt_history">تاريخي</string>
+    <string name="txt_historical">Historical</string>
     <string name="txt_select_your_languages">حدد اللغات الخاصة بك</string>
     <string name="txt_hello">مرحبًا</string>
     <string name="txt_hotel_wallet">Hotel Wallet</string>
@@ -36,7 +37,8 @@
     <string name="txt_enter_your_email_or_mobile">أدخل بريدك الإلكتروني أو هاتفك المحمول</string>
     <string name="txt_scan">أصبح تسجيل الفندق سهلاً بنقرة واحدة فقط</string>
     <string name="txt_scan_to_login">اذهب لتسجيل الدخول</string>
-
+    <string name="txt_english">إنجليزي</string>
+    <string name="txt_arabic">عربي</string>
 
     <!-- *********** Menu *********** -->
     <string name="txt_home">بيت</string>
@@ -46,10 +48,7 @@
     <string name="txt_favorite">مفضل</string>
 
     <!-- *********** Title *********** -->
-    <string name="txt_title_amount">رصيدك</string>
-    <string name="txt_Title_service">خدمات</string>
-    <string name="txt_Title_english">إنجليزي</string>
-    <string name="txt_Title_arabic">عربي</string>
+    <string name="txt_title_service">خدمات</string>
     <string name="txt_title_description">وصف</string>
     <string name="txt_title_quantity">كمية</string>
     <string name="txt_title_price">سعر</string>

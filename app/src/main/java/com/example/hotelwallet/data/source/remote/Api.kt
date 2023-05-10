@@ -1,21 +1,21 @@
 package com.example.hotelwallet.data.source.remote
 
 import com.example.hotelwallet.data.model.*
-import com.example.hotelwallet.domain.model.Login
+import com.example.hotelwallet.domain.model.LoginRequest
 import com.example.hotelwallet.domain.model.SignUp
-import com.example.hotelwallet.domain.model.User
-import retrofit2.Response
 import retrofit2.http.*
 
 interface Api {
 
-    @GET("services")
-    suspend fun getServices(): ServiceListResponse
+    @GET("services/{hotel_id}")
+    suspend fun getServicesByHotel(
+        @Path("hotel_id") hotelId: Int
+    ): ServiceListResponse
 
-    @GET("menu/{id}")
-    suspend fun getCategories(
-        @Path("id") categoryId: String
-    ): CategoryListResponse
+    @GET("menu/{service_id}")
+    suspend fun getMenuByServiceId(
+        @Path("service_id") serviceId: Int
+    ): MenuListResponse
 
     @GET("plats/{id}")
     suspend fun getMenuItems(
@@ -28,10 +28,20 @@ interface Api {
     ): GymListResponse
 
 
-    @POST("auth/loginUser")
-    suspend fun login(@Body credentials: Login):  UserListResponse
+    @POST("auth/login")
+    suspend fun login(@Body credentials: LoginRequest):  UserResponse
 
     @POST("auth/createUser")
     suspend fun signUp(@Body credentials: SignUp): MessageDto
+
+    @GET("auth/profile")
+    suspend fun getProfile(
+        @Header("Authorization") accessToken: String
+    ):  UserDto
+
+    @POST("auth/logout")
+    suspend fun logout(
+        @Header("Authorization") accessToken: String
+    ):  MessageDto
 
 }

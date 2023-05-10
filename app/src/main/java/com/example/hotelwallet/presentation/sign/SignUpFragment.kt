@@ -9,22 +9,24 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentSignUpBinding
+import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import com.example.hotelwallet.utility.Resource
 import com.google.android.material.snackbar.Snackbar
 
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
-    FragmentSignUpBinding::inflate
+    FragmentSignUpBinding::inflate,
+    toolbarConfiguration = ToolbarConfiguration()
 ), View.OnClickListener {
 
-    private val loginViewModel by activityViewModels<LoginViewModel>()
+    private val authenticationViewModel by activityViewModels<AuthenticationViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launchWhenStarted {
-            loginViewModel.stateSignUp.observe(viewLifecycleOwner) {
+            authenticationViewModel.stateSignUp.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Loading -> {
 
@@ -58,7 +60,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
         image: String
     ) {
 
-        loginViewModel.signUp(name, email, password,image)
+        authenticationViewModel.signUp(name, email, password,image)
     }
 
     override fun onClick(view: View?) {

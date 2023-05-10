@@ -1,9 +1,12 @@
 package com.example.hotelwallet.presentation.language
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hotelwallet.domain.usecase.language_usecase.GetLanguageUseCase
 import com.example.hotelwallet.domain.usecase.language_usecase.SaveLanguageUseCase
+import com.example.hotelwallet.utility.KEY_ENGLISH
+import com.example.hotelwallet.utility.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -18,25 +21,26 @@ class LanguageViewModel @Inject constructor(
     private val getLanguageUseCase: GetLanguageUseCase
 ) : ViewModel() {
 
-    private val _stateLanguage = MutableStateFlow<String>("")
-    val stateLanguage: SharedFlow<String> get() = _stateLanguage
+    private val _stateLanguage = SingleLiveEvent<String?>()
+    val stateLanguage: LiveData<String?> get() = _stateLanguage
 
     init {
         getLanguage()
     }
 
-    private fun getLanguage() {
+    fun getLanguage() {
         viewModelScope.launch {
             getLanguageUseCase()
                 .onEach {
-                    _stateLanguage.emit(it)
+                    _stateLanguage.value = it
                 }.launchIn(viewModelScope)
         }
     }
 
-    suspend fun saveLanguage(language: String) {
+    fun saveLanguage(language: String) {
         viewModelScope.launch {
             saveLanguageUseCase(language)
+            getLanguage()
         }
     }
 

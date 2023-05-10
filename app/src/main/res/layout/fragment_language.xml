@@ -6,90 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".presentation.language.LanguageFragment">
 
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/main_toolbar" />
+
     <LinearLayout
-        android:id="@+id/linear_language_english"
+        android:id="@+id/linearLangEn"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@drawable/background_white_with_ripple"
-        android:gravity="center"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingVertical="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
         <ImageView
-            android:id="@+id/img_checked_en"
+            android:id="@+id/imgCheckEn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:src="@drawable/circle_punch" />
 
         <TextView
-            android:id="@+id/txt_name_en"
-            style="@style/TextViewStyle.Bold.16"
+            style="@style/TextViewStyle.Medium.16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:text="@string/txt_Title_english" />
+            android:text="@string/txt_english" />
 
         <ImageView
-            android:id="@+id/img_flag_en"
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            tools:src="@drawable/img_flag_united_kingdom" />
-
+            android:src="@drawable/img_flag_en"/>
     </LinearLayout>
 
     <View
-        android:id="@+id/separator_language_english"
+        android:id="@+id/separatorLangEn"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/boulder"
-        app:layout_constraintTop_toBottomOf="@+id/linear_language_english" />
+        android:background="@color/bonjour"
+        app:layout_constraintTop_toBottomOf="@+id/linearLangEn" />
 
     <LinearLayout
-        android:id="@+id/linear_language_germany"
+        android:id="@+id/linearLangAr"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@drawable/background_white_with_ripple"
-        android:gravity="center"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/separator_language_english">
+        android:paddingVertical="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/separatorLangEn">
 
         <ImageView
-            android:id="@+id/img_checked_de"
+            android:id="@+id/imgCheckAr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:src="@drawable/circle_punch" />
 
         <TextView
-            android:id="@+id/txt_name_de"
-            style="@style/TextViewStyle.Bold.16"
+            style="@style/TextViewStyle.Medium.16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:text="@string/txt_Title_arabic" />
+            android:text="@string/txt_arabic" />
 
         <ImageView
-            android:id="@+id/img_flag_de"
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            tools:src="@drawable/img_flag_united_kingdom" />
-
+            android:src="@drawable/img_flag_tn"/>
     </LinearLayout>
 
     <View
-        android:id="@+id/separator_language_germany"
+        android:id="@+id/separatorLangAr"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/boulder"
-        app:layout_constraintTop_toBottomOf="@+id/linear_language_germany" />
+        android:background="@color/bonjour"
+        app:layout_constraintTop_toBottomOf="@+id/linearLangAr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
