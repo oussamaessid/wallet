@@ -39,7 +39,10 @@
     <string name="txt_scan_to_login">اذهب لتسجيل الدخول</string>
     <string name="txt_english">إنجليزي</string>
     <string name="txt_arabic">عربي</string>
-
+    <string name="txt_no_items">No items</string>
+    <string name="txt_create_your_account">Create your Account</string>
+    <string name="txt_welcome">Welcome!</string>
+    <string name="txt_have_account_first"><u>Already have an account?</u></string>
     <!-- *********** Menu *********** -->
     <string name="txt_home">بيت</string>
     <string name="txt_category">فئة</string>
@@ -67,5 +70,11 @@
     <string name="txt_btn_scan">مسح</string>
 
     <!-- *********** Message *********** -->
-
+    <string name="txt_error_email">Invalid email address</string>
+    <string name="txt_error_password">Invalid password</string>
+    <string name="txt_error_confirm_password">Invalid confirm password</string>
+    <string name="txt_error_last_name">Invalid lastName</string>
+    <string name="txt_error_first_name">Invalid firstName</string>
+    <string name="txt_msg_title_logout">Logout</string>
+    <string name="txt_msg_logout">Are you sure you want to disconnect?</string>
 </resources>

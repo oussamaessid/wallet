@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentSettingBinding
 import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.misc.BaseFragment
-import com.example.hotelwallet.presentation.sign.AuthenticationViewModel
+import com.example.hotelwallet.presentation.authentication.AuthenticationViewModel
 import com.example.hotelwallet.utility.Resource
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(

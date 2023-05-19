@@ -11,7 +11,7 @@
         layout="@layout/main_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCategories"
+        android:id="@+id/recyclerViewMenu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:spanCount="2"
         tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/row_item_category" />
+        tools:listitem="@layout/row_item_menu" />
 
     <TextView
         android:id="@+id/txtNoItems"

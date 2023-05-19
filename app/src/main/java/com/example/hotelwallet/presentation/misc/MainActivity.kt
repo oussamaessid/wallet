@@ -1,7 +1,6 @@
 package com.example.hotelwallet.presentation.misc
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.Navigation
@@ -23,20 +22,17 @@ class MainActivity : LocaleAwareCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(2).isEnabled = false
     }
 
     fun setBottomNavigation(isNavigation: Boolean) {
         if (isNavigation) {
-            binding.bottomNavContent.visibility = View.VISIBLE
+            binding.bottomNavigationView.visibility = View.VISIBLE
             val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
             val navController = Navigation.findNavController(this, R.id.mainNavHostContainer)
 
             NavigationUI.setupWithNavController(bottomNavigation, navController)
         } else {
-            binding.bottomNavContent.visibility = View.GONE
+            binding.bottomNavigationView.visibility = View.GONE
 
         }
     }

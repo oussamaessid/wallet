@@ -81,9 +81,56 @@
             app:nullable="false" />
 
         <action
-            android:id="@+id/action_menuFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_menuFragment_to_menuSubListFragment"
+            app:destination="@id/menuSubListFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/menuSubListFragment"
+        android:name="com.example.hotelwallet.presentation.menu.MenuSubListFragment"
+        android:label="fragment_sub_menu"
+        tools:layout="@layout/fragment_menu_sub_list">
+        <argument
+            android:name="menu_id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="menu_name"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_menuFragment_to_menuSubDetailsDialogFragment"
+            app:destination="@id/menuSubDetailsDialogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menuSubDetailsDialogFragment"
+        android:name="com.example.hotelwallet.presentation.menu.MenuSubDetailsDialogFragment"
+        android:label="fragment_sub_menu_details"
+        tools:layout="@layout/dialog_fragment_menu_sub_details">
+        <argument
+            android:name="menu_id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="position"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.hotelwallet.presentation.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart"/>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.hotelwallet.presentation.detail.DetailFragment"
@@ -201,7 +248,7 @@
         tools:layout="@layout/fragment_basket" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.hotelwallet.presentation.sign.LoginFragment"
+        android:name="com.example.hotelwallet.presentation.authentication.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -213,12 +260,15 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.hotelwallet.presentation.sign.SignUpFragment"
+        android:name="com.example.hotelwallet.presentation.authentication.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"

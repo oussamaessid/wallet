@@ -69,12 +69,11 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="EditText" parent="HotelWalletInputText">
+    <style name="HotelWalletEditText" parent="HotelWalletInputText">
         <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/background_radius8_light_grey</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
-        <item name="android:layout_marginBottom">24dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 </resources>

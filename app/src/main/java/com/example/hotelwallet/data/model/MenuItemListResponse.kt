@@ -2,5 +2,5 @@ package com.example.hotelwallet.data.model
 
 
 data class MenuItemListResponse(
-    val plat: List<MenuDto>
+    val plat: List<SubMenuDto>
 )

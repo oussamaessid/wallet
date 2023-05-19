@@ -1,7 +1,6 @@
 package com.example.hotelwallet.presentation.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -46,31 +45,26 @@ class MenuListFragment : BaseFragment<FragmentMenuListBinding>(
 
         menuListAdapter = MenuListAdapter(menuList) {
             val bundle = Bundle()
-            bundle.putString("id_category", it.id.toString())
-            Log.println(Log.ASSERT, "if_category", it.id.toString())
-            bundle.putString("category_name", it.nom)
-            bundle.putString("category_description", it.description)
-            findNavController().navigate(R.id.action_menuFragment_to_detailFragment, bundle)
+            bundle.putInt("menu_id", it.id)
+            bundle.putString("menu_name", it.nom)
+            findNavController().navigate(R.id.action_menuFragment_to_menuSubListFragment, bundle)
         }
 
-        binding.recyclerViewCategories.setHasFixedSize(true)
-        binding.recyclerViewCategories.isNestedScrollingEnabled = false
-        binding.recyclerViewCategories.adapter = menuListAdapter
+        binding.recyclerViewMenu.setHasFixedSize(true)
+        binding.recyclerViewMenu.isNestedScrollingEnabled = false
+        binding.recyclerViewMenu.adapter = menuListAdapter
 
-        serviceId?.let { id-> favoriteViewModel.getMenuList(id) }
-        observeFavorites()
+        serviceId?.let { id -> favoriteViewModel.getMenuList(id) }
+        observeMenus()
 
         setBottomNavigation(true)
     }
 
-    private fun observeFavorites() {
+    private fun observeMenus() {
         lifecycleScope.launchWhenStarted {
             favoriteViewModel.stateMenuList.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Loading -> {
-                        setLoading(true)
-
-                    }
+                    is Resource.Loading -> setLoading(true)
                     is Resource.Success -> {
                         it.data.apply {
                             menuList.clear()

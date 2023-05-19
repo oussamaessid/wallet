@@ -31,12 +31,12 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(
         appViewModel.stateLang.observe(viewLifecycleOwner) { language ->
             when (language) {
                 KEY_ENGLISH -> {
-                    binding.imgCheckEn.setImageResource(R.drawable.circle_punch)
+                    binding.imgCheckEn.setImageResource(R.drawable.circle_blue)
                     binding.imgCheckAr.setImageResource(R.drawable.circle_grey)
                 }
                 KEY_Arabic -> {
                     binding.imgCheckEn.setImageResource(R.drawable.circle_grey)
-                    binding.imgCheckAr.setImageResource(R.drawable.circle_punch)
+                    binding.imgCheckAr.setImageResource(R.drawable.circle_blue)
                 }
             }
         }

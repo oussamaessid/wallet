@@ -7,12 +7,10 @@ import com.bumptech.glide.Glide
 import com.example.hotelwallet.data.source.local.Basket
 import com.example.hotelwallet.data.source.local.Favorite
 import com.example.hotelwallet.databinding.RowItemDetailBinding
-import com.example.hotelwallet.presentation.basket.BasketViewModel
 
 
 class FavoriteAdapter(
     private val menuList: List<Favorite>,
-    private val viewModel: BasketViewModel
 ) : RecyclerView.Adapter<FavoriteAdapter.MenuViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
@@ -32,7 +30,6 @@ class FavoriteAdapter(
                     .into(binding.thumbImage)
 
                 binding.ivDelete.setOnClickListener {
-                    viewModel.deleteFavorites(menuList[position])
                 }
             }
 

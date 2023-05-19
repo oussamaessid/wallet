@@ -1,14 +1,15 @@
 package com.example.hotelwallet.di
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.room.Room
 import com.example.hotelwallet.data.mapper.*
 import com.example.hotelwallet.data.repository.*
-import com.example.hotelwallet.data.source.local.AppBasket
 import com.example.hotelwallet.data.source.local.AppDataStoreManager
-import com.example.hotelwallet.data.source.local.BasketsDao
-import com.example.hotelwallet.data.source.local.FavoritesDao
+import com.example.hotelwallet.data.source.local.HotelWalletDatabase
+import com.example.hotelwallet.data.source.local.dao.FavoriteDao
+import com.example.hotelwallet.data.source.local.dao.ProductDao
 import com.example.hotelwallet.data.source.remote.Api
 import com.example.hotelwallet.data.source.remote.HotelApi
 import com.example.hotelwallet.domain.repository.*
@@ -47,24 +48,25 @@ object AppModule {
             .create(Api::class.java)
     }
 
-    @Provides
-    fun provideBasketsDao(appDatabase: AppBasket): BasketsDao {
-        return appDatabase.favoriteDao()
-    }
-
-    @Provides
-    fun provideFavoritesDao(appDatabase: AppBasket): FavoritesDao {
-        return appDatabase.favoritesDao()
-    }
-
+    @SuppressLint("RestrictedApi")
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context): AppBasket {
+    internal fun provideDatabaseApp(@ApplicationContext application: Context): HotelWalletDatabase {
         return Room.databaseBuilder(
-            context,
-            AppBasket::class.java,
-            "Hotel_Wallet_database"
-        ).fallbackToDestructiveMigration().build()
+            application,
+            HotelWalletDatabase::class.java,
+            HotelWalletDatabase.DATABASE_NAME
+        ).build()
+    }
+
+    @Provides
+    fun provideProductDao(appDatabase: HotelWalletDatabase): ProductDao {
+        return appDatabase.productDao()
+    }
+
+    @Provides
+    fun provideFavoriteDao(appDatabase: HotelWalletDatabase): FavoriteDao {
+        return appDatabase.favoriteDao()
     }
 
     @Provides
@@ -76,9 +78,29 @@ object AppModule {
     @Provides
     fun provideMenuRepository(
         api: Api,
-        menuMapper: MenuMapper
+        menuMapper: MenuMapper,
+        subMenuMapper: SubMenuMapper,
+        favoriteMapper: FavoriteMapper,
+        productDao: ProductDao,
+        favoriteDao: FavoriteDao
     ): MenuRepository =
-        MenuRepositoryImpl(api = api, menuMapper = menuMapper)
+        MenuRepositoryImpl(
+            api = api,
+            menuMapper = menuMapper,
+            productDao = productDao,
+            favoriteDao = favoriteDao,
+            subMenuMapper = subMenuMapper,
+            favoriteMapper = favoriteMapper
+        )
+
+    @Singleton
+    @Provides
+    fun provideFavoriteRepository(
+        favoriteMapper: FavoriteMapper,
+        favoriteDao: FavoriteDao
+    ): FavoriteRepository =
+        FavoriteRepositoryImpl(favoriteDao = favoriteDao, favoriteMapper = favoriteMapper)
+
 
     @Singleton
     @Provides
