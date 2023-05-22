@@ -32,6 +32,7 @@
     <style name="HotelWalletButtonSecond" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:letterSpacing">0</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">@dimen/textSizeRegularPlus</item>
         <item name="android:textColor">@color/text_btn_text_color_selector_second</item>
         <item name="strokeColor">@color/text_btn_text_color_selector_second</item>

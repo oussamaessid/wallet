@@ -8,10 +8,12 @@ import coil.transform.CircleCropTransformation
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.RowItemCartBinding
 import com.example.hotelwallet.domain.model.SubMenu
+import com.example.hotelwallet.utility.KEY_PRODUCT_DELETE_CART
+import com.example.hotelwallet.utility.KEY_PRODUCT_DETAILS
 
 class CartAdapter(
     private val menuList: List<SubMenu>,
-    private val listener: (SubMenu) -> Unit
+    private val listener: (SubMenu, Int) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -37,7 +39,10 @@ class CartAdapter(
                 binding.txtPrice.text = itemView.context.getString(R.string.txt_price_menu)
                     .format(price.toFloat())
                 itemView.setOnClickListener {
-                    listener(this)
+                    listener(this, KEY_PRODUCT_DETAILS)
+                }
+                binding.imgDelete.setOnClickListener {
+                    listener(this, KEY_PRODUCT_DELETE_CART)
                 }
             }
         }

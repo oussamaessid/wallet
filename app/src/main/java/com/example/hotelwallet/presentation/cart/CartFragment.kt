@@ -9,7 +9,10 @@ import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentCartBinding
 import com.example.hotelwallet.domain.model.SubMenu
 import com.example.hotelwallet.domain.model.ToolbarConfiguration
+import com.example.hotelwallet.presentation.menu.MenuViewModel
 import com.example.hotelwallet.presentation.misc.BaseFragment
+import com.example.hotelwallet.utility.KEY_PRODUCT_DELETE_CART
+import com.example.hotelwallet.utility.KEY_PRODUCT_DETAILS
 import com.example.hotelwallet.utility.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +27,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
 ) {
 
     private val cartViewModel by activityViewModels<CartViewModel>()
+    private val menuViewModel by activityViewModels<MenuViewModel>()
 
     private lateinit var cartAdapter: CartAdapter
     private var productList = mutableListOf<SubMenu>()
@@ -31,7 +35,15 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cartAdapter = CartAdapter(productList) {
+        cartAdapter = CartAdapter(productList) {product, type->
+            when(type) {
+                KEY_PRODUCT_DETAILS -> {
+
+                }
+                KEY_PRODUCT_DELETE_CART -> {
+                    menuViewModel.deleteProduct(product)
+                }
+            }
         }
 
         binding.recyclerViewCart.setHasFixedSize(true)
@@ -40,7 +52,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
 
         cartViewModel.getProductList()
         observeCart()
-
+        observeDeleteFromCart()
         setBottomNavigation(true)
     }
 
@@ -55,11 +67,29 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
                             productList.addAll(this)
                             cartAdapter.notifyDataSetChanged()
                             binding.txtNoItems.isVisible = this.isEmpty()
-
+                            var total = 0.0
+                            productList?.forEach {product->
+                                total += product.quantity * (product.price.toFloat())
+                            }
+                            binding.txtTotal.text = getString(R.string.txt_price_value).format(total)
                         }
                         setLoading(false)
                     }
                     is Resource.Error -> {
+                        setLoading(false)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeDeleteFromCart(){
+        lifecycleScope.launchWhenStarted {
+            menuViewModel.stateDeleteProduct.observe(viewLifecycleOwner){
+                when(it){
+                    is  Resource.Loading -> setLoading(true)
+                    else -> {
+                        cartViewModel.getProductList()
                         setLoading(false)
                     }
                 }

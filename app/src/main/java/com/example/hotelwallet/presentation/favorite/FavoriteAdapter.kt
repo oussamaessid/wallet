@@ -1,38 +1,45 @@
 package com.example.hotelwallet.presentation.favorite
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.hotelwallet.data.source.local.Basket
-import com.example.hotelwallet.data.source.local.Favorite
-import com.example.hotelwallet.databinding.RowItemDetailBinding
-
+import coil.load
+import coil.transform.CircleCropTransformation
+import com.example.hotelwallet.R
+import com.example.hotelwallet.databinding.RowItemCartBinding
+import com.example.hotelwallet.domain.model.SubMenu
+import com.example.hotelwallet.utility.KEY_PRODUCT_DELETE_FAVORITE
+import com.example.hotelwallet.utility.KEY_PRODUCT_DETAILS
 
 class FavoriteAdapter(
-    private val menuList: List<Favorite>,
-) : RecyclerView.Adapter<FavoriteAdapter.MenuViewHolder>() {
+    private val menuList: List<SubMenu>,
+    private val listener: (SubMenu, Int) -> Unit
+) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-        val binding = RowItemDetailBinding
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
+        val binding = RowItemCartBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        return MenuViewHolder(binding)
+        return FavoriteViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         with(holder) {
             with(menuList[position]) {
-                binding.menuName.text = name
-                binding.menuPrice.text = price
-                binding.txtCount.text = quantity
-                Glide.with(itemView)
-                    .load(image)
-                    .into(binding.thumbImage)
-
-                binding.ivDelete.setOnClickListener {
+                binding.txtTitle.text = name
+                binding.imgProduct.load(image) {
+                    placeholder(R.drawable.img_logo_default)
+                    transformations(CircleCropTransformation())
+                }
+                binding.txtQuantity.visibility = View.GONE
+                binding.txtPrice.text = itemView.context.getString(R.string.txt_price_menu).format(price.toFloat())
+                itemView.setOnClickListener {
+                    listener(this, KEY_PRODUCT_DETAILS)
+                }
+                binding.imgDelete.setOnClickListener {
+                    listener(this, KEY_PRODUCT_DELETE_FAVORITE)
                 }
             }
-
         }
     }
 
@@ -40,13 +47,7 @@ class FavoriteAdapter(
         return menuList.size
     }
 
-
-    inner class MenuViewHolder(val binding: RowItemDetailBinding) :
+    inner class FavoriteViewHolder(val binding: RowItemCartBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-
 }
-
-
-
-

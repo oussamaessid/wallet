@@ -15,4 +15,5 @@ const val KEY_HOTEL_ID = "hotel_id"
 const val KEY_PRODUCT_DETAILS = 1
 const val KEY_PRODUCT_ADD_FAVORITE = 2
 const val KEY_PRODUCT_DELETE_FAVORITE = 3
+const val KEY_PRODUCT_DELETE_CART = 4
 

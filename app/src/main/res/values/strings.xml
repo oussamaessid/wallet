@@ -65,6 +65,7 @@
     <!-- *********** Title *********** -->
     <string name="txt_title_service">Services</string>
     <string name="txt_title_cart">Cart</string>
+    <string name="txt_title_favorite">Favorite</string>
     <string name="txt_title_settings">Settings</string>
     <string name="txt_title_profile">Profile</string>
     <string name="txt_title_edit_profile">Edit Profile</string>
@@ -91,6 +92,7 @@
     <string name="txt_btn_less">-</string>
     <string name="txt_btn_more">+</string>
     <string name="txt_btn_add_to_cart">Add to cart</string>
+    <string name="txt_btn_confirm">Confirm</string>
 
     <!-- *********** Message *********** -->
     <string name="txt_error_email">Invalid email address</string>

@@ -11,6 +11,7 @@
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_back_white.xml" value="0.155" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_camera_small.xml" value="0.1905" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_cart.xml" value="0.1475" />
+        <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_check.xml" value="0.1475" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_close.xml" value="0.1475" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_edit.xml" value="0.1905" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_favorite_default.xml" value="0.1475" />
@@ -22,9 +23,12 @@
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_privacy_policy.xml" value="0.2195" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/img_terms_and_conditions.xml" value="0.2205" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/rectangle_blue_radius10.xml" value="0.1475" />
+        <entry key="..\:/work/android/wallet/app/src/main/res/drawable/rectangle_blue_radius15.xml" value="0.1475" />
         <entry key="..\:/work/android/wallet/app/src/main/res/drawable/rectangle_blue_radius8.xml" value="0.1475" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/activity_main.xml" value="0.11778115501519756" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/work/android/wallet/app/src/main/res/layout/alert_dialog_fragment.xml" value="0.2421875" />
+        <entry key="..\:/work/android/wallet/app/src/main/res/layout/count_notification_layout.xml" value="0.2421875" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/dialog_fragment_menu_sub_details.xml" value="0.2421875" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_basket.xml" value="0.21354166666666666" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_cart.xml" value="0.2421875" />

@@ -3,25 +3,32 @@ package com.example.hotelwallet.presentation.misc
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.ActivityMainBinding
+import com.example.hotelwallet.presentation.cart.CartViewModel
+import com.example.hotelwallet.utility.Resource
 import com.example.hotelwallet.utility.TAG_ALERT_DIALOG_ERROR
+import com.example.hotelwallet.utility.removeBadge
+import com.example.hotelwallet.utility.showBadge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+
 
 @AndroidEntryPoint
 class MainActivity : LocaleAwareCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val appViewModel: AppViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        cartViewModel.getProductList()
+        observeCart()
     }
 
     fun setBottomNavigation(isNavigation: Boolean) {
@@ -47,16 +54,12 @@ class MainActivity : LocaleAwareCompatActivity() {
         }
     }
 
-    override fun updateLocale(locale: Locale) {
-        super.updateLocale(locale)
-    }
-
     fun setErrorAlert(
         errorMsg: String?,
         titleMsg: Any? = null,
         positiveBtn: Int,
         negativeBtn: Int? = null,
-        positiveClick: ((View) -> Unit)?= null,
+        positiveClick: ((View) -> Unit)? = null,
         negativeClick: ((View) -> Unit)? = null
     ) {
         this.supportFragmentManager.let { fragmentManager ->
@@ -68,6 +71,38 @@ class MainActivity : LocaleAwareCompatActivity() {
                 positiveClickListener = positiveClick
                 negativeClickListener = negativeClick
             }.show(fragmentManager, TAG_ALERT_DIALOG_ERROR)
+        }
+    }
+
+    private fun observeCart() {
+        lifecycleScope.launchWhenStarted {
+            cartViewModel.stateProductList.observe(this@MainActivity) {
+                when (it) {
+                    is Resource.Loading -> setLoading(true)
+                    is Resource.Success -> {
+                        it.data.apply {
+                            if (this.isNotEmpty()) {
+                                var quantity = 0
+                                this.forEach { product ->
+                                    quantity += product.quantity
+                                }
+                                showBadge(
+                                    applicationContext,
+                                    binding.bottomNavigationView,
+                                    R.id.cartFragment,
+                                    "$quantity"
+                                )
+                            } else {
+                                removeBadge(binding.bottomNavigationView, R.id.cartFragment)
+                            }
+                        }
+                        setLoading(false)
+                    }
+                    is Resource.Error -> {
+                        setLoading(false)
+                    }
+                }
+            }
         }
     }
 }
