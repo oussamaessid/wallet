@@ -54,6 +54,16 @@
     <string name="txt_quantity">Quantity :</string>
     <string name="txt_quantity_value">Quantity : %s</string>
     <string name="txt_total">Total :</string>
+    <string name="txt_select_offer">Select Offer :</string>
+    <string name="txt_one_day">One Day</string>
+    <string name="txt_two_day">Two Day</string>
+    <string name="txt_three_day">Three Day</string>
+    <string name="txt_four_day">Four Day</string>
+    <string name="txt_five_day">Five Day</string>
+    <string name="txt_session">%s / Session</string>
+    <string name="txt_time">Time :</string>
+    <string name="txt_gallery">Gallery :</string>
+    <string name="txt_times"><b>Monday to Friday:</b> 8 a.m. – 10 p.m.\n<b>Saturday:</b> 8:30 a.m. – 6 p.m.\n<b>Sunday:</b>9 a.m. – 1 p.m.</string>
 
     <!-- *********** Menu *********** -->
     <string name="txt_home">Home</string>
@@ -93,6 +103,7 @@
     <string name="txt_btn_more">+</string>
     <string name="txt_btn_add_to_cart">Add to cart</string>
     <string name="txt_btn_confirm">Confirm</string>
+    <string name="txt_btn_booking">Booking</string>
 
     <!-- *********** Message *********** -->
     <string name="txt_error_email">Invalid email address</string>

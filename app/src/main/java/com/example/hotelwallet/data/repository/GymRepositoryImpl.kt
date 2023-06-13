@@ -1,9 +1,9 @@
 package com.example.hotelwallet.data.repository
 
-import android.util.Log
-import com.example.hotelwallet.data.mapper.GymMapper
+import com.example.hotelwallet.data.mapper.ImageMapper
+import com.example.hotelwallet.data.mapper.PlanMapper
 import com.example.hotelwallet.data.source.remote.Api
-import com.example.hotelwallet.domain.model.Gym
+import com.example.hotelwallet.domain.model.Plan
 import com.example.hotelwallet.domain.repository.GymRepository
 import com.example.hotelwallet.utility.Resource
 import kotlinx.coroutines.flow.Flow
@@ -14,16 +14,19 @@ import javax.inject.Inject
 
 class GymRepositoryImpl @Inject constructor(
     private val api: Api,
-    private val gymMapper: GymMapper,
+    private val planMapper: PlanMapper,
+    private val imageMapper: ImageMapper
 ) : GymRepository {
-    override suspend fun getGym(category: String): Flow<Resource<List<Gym>>> = flow {
+    override suspend fun getGym(serviceId: Int): Flow<Resource<List<Plan>>> = flow {
         try {
             emit(Resource.Loading)
-            val categoriesResponse = gymMapper.mapList(
-                api.getGym(category).plans
+            val planResponse = planMapper.mapList(
+                api.getPlanByService(serviceId).plans
             )
-            Log.println(Log.ASSERT,"categoriesResponse",categoriesResponse.toString())
-            emit(Resource.Success(categoriesResponse))
+            planResponse.map{plan ->
+                plan.images = imageMapper.mapList(api.getImages(plan.id).images)
+            }
+            emit(Resource.Success(planResponse))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred."))
         } catch (e: IOException) {

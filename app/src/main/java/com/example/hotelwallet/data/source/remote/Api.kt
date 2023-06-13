@@ -22,10 +22,10 @@ interface Api {
         @Path("id") id: String
     ): MenuItemListResponse
 
-    @GET("plans/{id}")
-    suspend fun getGym(
-        @Path("id") id: String
-    ): GymListResponse
+    @GET("plans/{service_id}")
+    suspend fun getPlanByService(
+        @Path("service_id") serviceId: Int
+    ): PlanListResponse
 
 
     @POST("auth/login")
@@ -43,5 +43,10 @@ interface Api {
     suspend fun logout(
         @Header("Authorization") accessToken: String
     ):  MessageDto
+
+    @GET("plan/{plan_id}")
+    suspend fun getImages(
+        @Path("plan_id") planId: Int
+    ): ImageListResponse
 
 }

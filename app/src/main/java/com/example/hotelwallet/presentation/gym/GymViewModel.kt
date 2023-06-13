@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hotelwallet.domain.model.Gym
+import com.example.hotelwallet.domain.model.Plan
 import com.example.hotelwallet.domain.usecase.gym_usecase.GetGymUseCase
 import com.example.hotelwallet.utility.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,14 +19,14 @@ class GymViewModel @Inject constructor(
     private val getGymUseCase: GetGymUseCase,
 ) : ViewModel() {
 
-    private val _stateCategories = MutableLiveData<Resource<List<Gym>>>()
-    val stateCategories: LiveData<Resource<List<Gym>>> get() = _stateCategories
+    private val _stateGyms = MutableLiveData<Resource<List<Plan>>>()
+    val stateGyms: LiveData<Resource<List<Plan>>> get() = _stateGyms
 
-    fun getCategories(category: String) {
+    fun getGymList(serviceId: Int) {
         viewModelScope.launch {
-            getGymUseCase(category)
+            getGymUseCase(serviceId)
                 .onEach {
-                    _stateCategories.value = it
+                    _stateGyms.value = it
                 }.launchIn(viewModelScope)
         }
     }

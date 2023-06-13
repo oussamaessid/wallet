@@ -160,13 +160,55 @@
             app:destination="@id/basketFragment" />
 
     </fragment>
+
     <fragment
         android:id="@+id/gymFragment"
         android:name="com.example.hotelwallet.presentation.gym.GymFragment"
         android:label="fragment_gym"
         tools:layout="@layout/fragment_gym">
 
+        <action
+            android:id="@+id/action_gymFragment_to_gymDetailsFragment"
+            app:destination="@id/gymDetailsFragment" />
+
+        <argument
+            android:name="service_id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="service_name"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
+
+    <fragment
+        android:id="@+id/gymDetailsFragment"
+        android:name="com.example.hotelwallet.presentation.gym.GymDetailsFragment"
+        android:label="fragment_gym_details"
+        tools:layout="@layout/fragment_gym_details">
+
+        <argument
+            android:name="service_id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="position"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="gym_name"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.hotelwallet.presentation.profile.ProfileFragment"

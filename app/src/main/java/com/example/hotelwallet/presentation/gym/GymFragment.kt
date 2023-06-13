@@ -1,73 +1,80 @@
 package com.example.hotelwallet.presentation.gym
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentGymBinding
-import com.example.hotelwallet.domain.model.Gym
+import com.example.hotelwallet.domain.model.Plan
 import com.example.hotelwallet.domain.model.ToolbarConfiguration
+import com.example.hotelwallet.presentation.menu.MenuListFragmentArgs
 import com.example.hotelwallet.presentation.misc.BaseFragment
 import com.example.hotelwallet.utility.Resource
 
-
 class GymFragment : BaseFragment<FragmentGymBinding>(
     FragmentGymBinding::inflate,
-    toolbarConfiguration = ToolbarConfiguration(
-        visibility = View.VISIBLE,
-        btnBackVisibility = View.VISIBLE,
-        title = R.string.txt_title_service
-    )
+    toolbarConfiguration = ToolbarConfiguration()
 ) {
 
-    private var menuList = mutableListOf<Gym>()
-    private lateinit var gymAdapter: OffersAdapter
+    private var gymList = mutableListOf<Plan>()
+    private lateinit var gymAdapter: GymAdapter
     private val gymViewModel by activityViewModels<GymViewModel>()
-    private lateinit var idcategory: String
+    private var serviceId: Int? = null
+    private var serviceName: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setBottomNavigation(true)
+        setBottomNavigation(false)
 
-        gymAdapter = OffersAdapter(menuList){
-            val message: String? = "Are you sure "
-            showCustomDialogBox(message)
+        serviceId = arguments?.let {
+            GymFragmentArgs.fromBundle(it).serviceId
         }
 
-        getMealInformationFromIntent()
-        binding.recyclerViewOffers.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerViewOffers.setHasFixedSize(true)
-        binding.recyclerViewOffers.isNestedScrollingEnabled = false
-        binding.recyclerViewOffers.adapter = gymAdapter
+        serviceName = arguments?.let {
+            MenuListFragmentArgs.fromBundle(it).serviceName
+        }
 
-        gymViewModel.getCategories(idcategory)
-        observeFavorites()
+        ToolbarConfiguration(
+            visibility = View.VISIBLE,
+            btnBackVisibility = View.VISIBLE,
+            title = serviceName
+        ).updateToolbarLayout()
+
+        gymAdapter = GymAdapter(gymList) { product, pos ->
+            val bundle = Bundle()
+            bundle.putInt("service_id", serviceId?:0)
+            bundle.putInt("position", pos)
+            bundle.putString("gym_name", product.name)
+            findNavController().navigate(R.id.action_gymFragment_to_gymDetailsFragment, bundle)
+        }
+
+        binding.recyclerViewGym.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerViewGym.setHasFixedSize(true)
+        binding.recyclerViewGym.isNestedScrollingEnabled = false
+        binding.recyclerViewGym.adapter = gymAdapter
+
+        gymViewModel.getGymList(serviceId ?: 0)
+
+        observeGymList()
     }
 
-    private fun observeFavorites() {
+    private fun observeGymList() {
         lifecycleScope.launchWhenStarted {
-            gymViewModel.stateCategories.observe(viewLifecycleOwner) {
+            gymViewModel.stateGyms.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Loading -> {
-                        setLoading(true)
-
-                    }
+                    is Resource.Loading -> setLoading(true)
                     is Resource.Success -> {
                         it.data.apply {
-                            menuList.clear()
-                            menuList.addAll(this)
+                            gymList.clear()
+                            gymList.addAll(this)
                             gymAdapter.notifyDataSetChanged()
+                            binding.txtNoItems.isVisible = this.isEmpty()
 
                         }
                         setLoading(false)
@@ -79,34 +86,5 @@ class GymFragment : BaseFragment<FragmentGymBinding>(
             }
         }
     }
-
-    private fun showCustomDialogBox(message: String?) {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.layout_custom_dailog)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        val tvMessage: TextView = dialog.findViewById(R.id.txtMessage)
-        val btnYes: Button = dialog.findViewById(R.id.btnYes)
-        val btnNo: Button = dialog.findViewById(R.id.btnNo)
-
-        tvMessage.text = message
-
-        btnYes.setOnClickListener {
-            Toast.makeText(requireContext(), "click on Yes", Toast.LENGTH_LONG).show()
-        }
-
-        btnNo.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialog.show()
-    }
-
-    private fun getMealInformationFromIntent() {
-        val args = this.arguments
-        idcategory = args?.get("id_service").toString()
-    }
-
 }
 

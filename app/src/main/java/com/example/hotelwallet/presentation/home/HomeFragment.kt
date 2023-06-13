@@ -45,7 +45,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             val bundle = Bundle()
             bundle.putInt("service_id", service.id)
             bundle.putString("service_name", service.nom)
-            findNavController().navigate(R.id.action_homeFragment_to_menuFragment, bundle)
+            when(service.id){
+                2,3-> findNavController().navigate(R.id.action_homeFragment_to_gymFragment, bundle)
+                else -> findNavController().navigate(R.id.action_homeFragment_to_menuFragment, bundle)
+            }
         }
 
         binding.recyclerViewService.setHasFixedSize(true)

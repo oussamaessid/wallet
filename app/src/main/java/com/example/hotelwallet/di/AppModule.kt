@@ -114,9 +114,10 @@ object AppModule {
     @Provides
     fun provideGymRepository(
         api: Api,
-        gymMapper: GymMapper
+        planMapper: PlanMapper,
+        imageMapper: ImageMapper
     ): GymRepository =
-        GymRepositoryImpl(api = api, gymMapper = gymMapper)
+        GymRepositoryImpl(api = api, planMapper = planMapper, imageMapper = imageMapper)
 
     @Singleton
     @Provides
