@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentCartBinding
+import com.example.hotelwallet.domain.model.Order
 import com.example.hotelwallet.domain.model.SubMenu
 import com.example.hotelwallet.domain.model.ToolbarConfiguration
 import com.example.hotelwallet.presentation.menu.MenuViewModel
@@ -15,6 +16,7 @@ import com.example.hotelwallet.utility.KEY_PRODUCT_DELETE_CART
 import com.example.hotelwallet.utility.KEY_PRODUCT_DETAILS
 import com.example.hotelwallet.utility.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class CartFragment : BaseFragment<FragmentCartBinding>(
@@ -31,6 +33,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
 
     private lateinit var cartAdapter: CartAdapter
     private var productList = mutableListOf<SubMenu>()
+    var total = 0.0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +56,12 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
         cartViewModel.getProductList()
         observeCart()
         observeDeleteFromCart()
+        observeAddOrder()
         setBottomNavigation(true)
+
+        binding.btnConfirm.setOnClickListener{
+            cartViewModel.addProductToOrder(Order(id = 1, createdAt = Date().time, totalPrice = total, platList = productList))
+        }
     }
 
     private fun observeCart() {
@@ -67,7 +75,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
                             productList.addAll(this)
                             cartAdapter.notifyDataSetChanged()
                             binding.txtNoItems.isVisible = this.isEmpty()
-                            var total = 0.0
+
                             productList?.forEach {product->
                                 total += product.quantity * (product.price.toFloat())
                             }
@@ -88,6 +96,20 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
             menuViewModel.stateDeleteProduct.observe(viewLifecycleOwner){
                 when(it){
                     is  Resource.Loading -> setLoading(true)
+                    else -> {
+                        cartViewModel.getProductList()
+                        setLoading(false)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeAddOrder(){
+        lifecycleScope.launchWhenStarted {
+            cartViewModel.stateAddOrder.observe(viewLifecycleOwner){
+                when(it){
+                    is Resource.Loading -> setLoading(true)
                     else -> {
                         cartViewModel.getProductList()
                         setLoading(false)

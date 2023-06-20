@@ -132,36 +132,6 @@
         tools:layout="@layout/fragment_cart"/>
 
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.example.hotelwallet.presentation.detail.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail">
-        <argument
-            android:name="id_category"
-            android:defaultValue="0"
-            app:argType="string"
-            app:nullable="false" />
-        <action
-            android:id="@+id/action_detailFragment_to_detailMenuFragment"
-            app:destination="@id/detailMenuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailMenuFragment"
-        android:name="com.example.hotelwallet.presentation.detail.DetailMenuFragment"
-        android:label="fragment_detail_menu"
-        tools:layout="@layout/fragment_detail_menu">
-        <argument
-            android:name="nom"
-            android:defaultValue="name"
-            app:argType="string"
-            app:nullable="false" />
-        <action
-            android:id="@+id/action_detailMenuFragment_to_basketFragment"
-            app:destination="@id/basketFragment" />
-
-    </fragment>
-
-    <fragment
         android:id="@+id/gymFragment"
         android:name="com.example.hotelwallet.presentation.gym.GymFragment"
         android:label="fragment_gym"
@@ -258,7 +228,9 @@
         <action
             android:id="@+id/action_settingFragment_to_languageFragment"
             app:destination="@id/languageFragment" />
-
+        <action
+            android:id="@+id/action_settingFragment_to_historicFragment"
+            app:destination="@id/historicFragment" />
         <action
             android:id="@+id/action_settingFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -284,10 +256,10 @@
         android:label="fragment_language"
         tools:layout="@layout/fragment_language" />
     <fragment
-        android:id="@+id/basketFragment"
-        android:name="com.example.hotelwallet.presentation.basket.BasketFragment"
-        android:label="fragment_basket"
-        tools:layout="@layout/fragment_basket" />
+        android:id="@+id/historicFragment"
+        android:name="com.example.hotelwallet.presentation.historic.HistoricFragment"
+        android:label="fragment_historic"
+        tools:layout="@layout/fragment_historic" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.hotelwallet.presentation.authentication.LoginFragment"

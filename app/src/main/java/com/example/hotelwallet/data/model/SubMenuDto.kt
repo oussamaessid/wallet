@@ -23,5 +23,6 @@ data class SubMenuDto(
     @SerializedName("updated_at")
     val updatedAt: String,
     var quantity: Int = 1,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    val isValid: Boolean = false
 )

@@ -8,6 +8,7 @@ import com.example.hotelwallet.data.mapper.*
 import com.example.hotelwallet.data.repository.*
 import com.example.hotelwallet.data.source.local.AppDataStoreManager
 import com.example.hotelwallet.data.source.local.HotelWalletDatabase
+import com.example.hotelwallet.data.source.local.dao.OrderDao
 import com.example.hotelwallet.data.source.local.dao.FavoriteDao
 import com.example.hotelwallet.data.source.local.dao.ProductDao
 import com.example.hotelwallet.data.source.remote.Api
@@ -70,6 +71,11 @@ object AppModule {
     }
 
     @Provides
+    fun provideOrderDao(appDatabase: HotelWalletDatabase): OrderDao {
+        return appDatabase.orderDao()
+    }
+
+    @Provides
     @Singleton
     fun provideDataStoreManager(@ApplicationContext appContext: Context): AppDataStore =
         AppDataStoreManager(appContext)
@@ -81,16 +87,20 @@ object AppModule {
         menuMapper: MenuMapper,
         subMenuMapper: SubMenuMapper,
         favoriteMapper: FavoriteMapper,
+        orderMapper: OrderMapper,
         productDao: ProductDao,
-        favoriteDao: FavoriteDao
+        favoriteDao: FavoriteDao,
+        orderDao: OrderDao,
     ): MenuRepository =
         MenuRepositoryImpl(
             api = api,
             menuMapper = menuMapper,
             productDao = productDao,
             favoriteDao = favoriteDao,
+            orderDao = orderDao,
             subMenuMapper = subMenuMapper,
-            favoriteMapper = favoriteMapper
+            favoriteMapper = favoriteMapper,
+            orderMapper = orderMapper,
         )
 
     @Singleton
@@ -101,6 +111,13 @@ object AppModule {
     ): FavoriteRepository =
         FavoriteRepositoryImpl(favoriteDao = favoriteDao, favoriteMapper = favoriteMapper)
 
+    @Singleton
+    @Provides
+    fun provideOrderRepository(
+        orderMapper: OrderMapper,
+        orderDao: OrderDao
+    ): OrderRepository =
+        OrderRepositoryImpl(orderDao = orderDao, orderMapper = orderMapper)
 
     @Singleton
     @Provides

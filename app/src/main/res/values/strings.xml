@@ -63,7 +63,16 @@
     <string name="txt_session">%s / Session</string>
     <string name="txt_time">Time :</string>
     <string name="txt_gallery">Gallery :</string>
+    <string name="txt_order_value">Order : %s</string>
+    <string name="txt_date_value">Date : %s</string>
     <string name="txt_times"><b>Monday to Friday:</b> 8 a.m. – 10 p.m.\n<b>Saturday:</b> 8:30 a.m. – 6 p.m.\n<b>Sunday:</b>9 a.m. – 1 p.m.</string>
+    <string name="txt_just_now">Just now</string>
+    <string name="txt_minute_ago">A minute ago</string>
+    <string name="txt_minutes_ago">%s minutes ago</string>
+    <string name="txt_an_hour_ago">An hour ago</string>
+    <string name="txt_hours_ago">%s hours ago</string>
+    <string name="txt_yesterday">Yesterday</string>
+    <string name="txt_days_ago">%s days ago</string>
 
     <!-- *********** Menu *********** -->
     <string name="txt_home">Home</string>
@@ -82,6 +91,7 @@
     <string name="txt_title_language">Language</string>
     <string name="txt_title_description">Description</string>
     <string name="txt_title_price">Price</string>
+    <string name="txt_title_historic">Historic</string>
 
     <!-- *********** Button *********** -->
     <string name="txt_btn_skip">Skip</string>

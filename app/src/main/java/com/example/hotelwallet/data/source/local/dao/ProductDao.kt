@@ -12,6 +12,9 @@ interface ProductDao {
     @Delete
     suspend fun deleteProduct(product: SubMenuDto)
 
-    @Query("SELECT * FROM SubMenuDto")
+    @Query("SELECT * FROM SubMenuDto WHERE isValid = 0")
     fun getAllProducts(): List<SubMenuDto>
+
+    @Query("UPDATE SubMenuDto SET isValid =1 WHERE id = :productId")
+    fun addProductToOrder(productId: Int)
 }
