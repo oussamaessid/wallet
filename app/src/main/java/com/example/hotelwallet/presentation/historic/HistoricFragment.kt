@@ -16,7 +16,7 @@ class HistoricFragment : BaseFragment<FragmentHistoricBinding>(
     FragmentHistoricBinding::inflate,
     toolbarConfiguration = ToolbarConfiguration(
         visibility = View.VISIBLE,
-        btnBackVisibility = View.GONE,
+        btnBackVisibility = View.VISIBLE,
         title = R.string.txt_title_historic
     )
 ) {
@@ -40,7 +40,7 @@ class HistoricFragment : BaseFragment<FragmentHistoricBinding>(
         orderViewModel.getOrderList()
         observeOrder()
 
-        setBottomNavigation(true)
+        setBottomNavigation(false)
     }
 
     private fun observeOrder() {

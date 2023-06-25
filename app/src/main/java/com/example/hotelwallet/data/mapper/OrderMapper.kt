@@ -14,6 +14,7 @@ class OrderMapper @Inject constructor(
             id = from.id,
             createdAt = from.createdAt,
             totalPrice = from.totalPrice,
+            category = from.category,
             platList = from.platList.let { subMenuMapper.mapList(it) },
             planList = from.planList.let { planMapper.mapList(it) }
         )
@@ -24,6 +25,7 @@ class OrderMapper @Inject constructor(
             id = from.id,
             createdAt = from.createdAt,
             totalPrice = from.totalPrice,
+            category = from.category,
             platList = from.platList.let { subMenuMapper.mapListInverse(it) },
             planList = from.planList.let { planMapper.mapListInverse(it) }
         )

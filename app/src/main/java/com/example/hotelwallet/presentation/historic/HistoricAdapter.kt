@@ -30,6 +30,19 @@ class HistoricAdapter(
                     .format(platList.size + planList.size)
                 binding.txtDate.text = itemView.context.getString(R.string.txt_date_value)
                     .format(createdAt.getTimeAgo(itemView.context))
+
+                binding.txtCategory.text = if (platList.isEmpty()){
+                    if (category == 2){
+                        itemView.context.getString(R.string.txt_gym)
+                    }else if(category == 3){
+                        itemView.context.getString(R.string.txt_swimming_pool)
+                    }else{
+                        itemView.context.getString(R.string.txt_event)
+                    }
+                }else{
+                    itemView.context.getString(R.string.txt_restaurant)
+                }
+
                 itemView.setOnClickListener {
                     listener(this)
                 }

@@ -22,6 +22,7 @@
     <string name="txt_langauge">Language</string>
     <string name="txt_logout">Logout</string>
     <string name="txt_historical">Historical</string>
+    <string name="txt_chat">Live Chat</string>
     <string name="txt_select_your_languages">Select Your Languages</string>
     <string name="txt_hello">Hello</string>
     <string name="txt_hotel_wallet">Hotel Wallet</string>
@@ -60,6 +61,11 @@
     <string name="txt_three_day">Three Day</string>
     <string name="txt_four_day">Four Day</string>
     <string name="txt_five_day">Five Day</string>
+    <string name="txt_one_person">One Person</string>
+    <string name="txt_two_person">Two Persons</string>
+    <string name="txt_three_person">Three Persons</string>
+    <string name="txt_four_person">Four Persons</string>
+    <string name="txt_five_person">Five Persons</string>
     <string name="txt_session">%s / Session</string>
     <string name="txt_time">Time :</string>
     <string name="txt_gallery">Gallery :</string>
@@ -73,6 +79,10 @@
     <string name="txt_hours_ago">%s hours ago</string>
     <string name="txt_yesterday">Yesterday</string>
     <string name="txt_days_ago">%s days ago</string>
+    <string name="txt_every_friday">Every friday</string>
+    <string name="txt_you">You</string>
+    <string name="txt_hotel">Hotel</string>
+    <string name="txt_chat_writing">Chat writing ......</string>
 
     <!-- *********** Menu *********** -->
     <string name="txt_home">Home</string>
@@ -85,6 +95,7 @@
     <string name="txt_title_service">Services</string>
     <string name="txt_title_cart">Cart</string>
     <string name="txt_title_favorite">Favorite</string>
+    <string name="txt_title_chat">Chat</string>
     <string name="txt_title_settings">Settings</string>
     <string name="txt_title_profile">Profile</string>
     <string name="txt_title_edit_profile">Edit Profile</string>
@@ -92,6 +103,10 @@
     <string name="txt_title_description">Description</string>
     <string name="txt_title_price">Price</string>
     <string name="txt_title_historic">Historic</string>
+    <string name="txt_restaurant">Restaurant</string>
+    <string name="txt_gym">Gym</string>
+    <string name="txt_swimming_pool">Swimming pool</string>
+    <string name="txt_event">Event</string>
 
     <!-- *********** Button *********** -->
     <string name="txt_btn_skip">Skip</string>

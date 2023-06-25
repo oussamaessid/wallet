@@ -60,7 +60,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(
         setBottomNavigation(true)
 
         binding.btnConfirm.setOnClickListener{
-            cartViewModel.addProductToOrder(Order(id = 1, createdAt = Date().time, totalPrice = total, platList = productList))
+            cartViewModel.addProductToOrder(Order(createdAt = Date().time, totalPrice = total, category = 1, platList = productList))
         }
     }
 

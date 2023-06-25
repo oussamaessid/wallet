@@ -37,7 +37,7 @@ interface Api {
     @GET("auth/profile")
     suspend fun getProfile(
         @Header("Authorization") accessToken: String
-    ):  UserDto
+    ):  ProfileResponse
 
     @POST("auth/logout")
     suspend fun logout(

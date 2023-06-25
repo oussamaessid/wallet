@@ -46,7 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             bundle.putInt("service_id", service.id)
             bundle.putString("service_name", service.nom)
             when(service.id){
-                2,3-> findNavController().navigate(R.id.action_homeFragment_to_gymFragment, bundle)
+                2,3,4-> findNavController().navigate(R.id.action_homeFragment_to_gymFragment, bundle)
                 else -> findNavController().navigate(R.id.action_homeFragment_to_menuFragment, bundle)
             }
         }

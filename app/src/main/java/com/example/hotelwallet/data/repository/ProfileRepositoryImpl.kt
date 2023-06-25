@@ -26,7 +26,7 @@ class ProfileRepositoryImpl @Inject constructor(
             emit(Resource.Loading)
             Log.d("***TTT :", "$BEARER ${dataStore.getStringValue(ACCESS_TOKEN)}")
             val userResponse =
-                userMapper.map(api.getProfile("$BEARER ${dataStore.getStringValue(ACCESS_TOKEN)}"))
+                userMapper.map(api.getProfile("$BEARER ${dataStore.getStringValue(ACCESS_TOKEN)}").user)
             emit(Resource.Success(userResponse))
         }catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred."))

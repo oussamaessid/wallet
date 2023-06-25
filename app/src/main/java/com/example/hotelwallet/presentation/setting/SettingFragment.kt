@@ -32,6 +32,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(
         binding.linearProfile.setOnClickListener(this)
         binding.linearLanguage.setOnClickListener(this)
         binding.linearHistorical.setOnClickListener(this)
+        binding.linearQuestion.setOnClickListener(this)
         binding.btnLogout.setOnClickListener(this)
     }
 
@@ -70,6 +71,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(
             }
             R.id.linearHistorical -> {
                 findNavController().navigate(R.id.action_settingFragment_to_historicFragment)
+            }
+            R.id.linearQuestion -> {
+                findNavController().navigate(R.id.action_settingFragment_to_chatFragment)
             }
             R.id.btnLogout -> {
                 setErrorAlert(
