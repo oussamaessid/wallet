@@ -44,16 +44,16 @@ class AuthenticationViewModel @Inject constructor(
 
     fun register(
         name: String,
+        prenom: String,
         email: String,
-        password: String,
-        image:String
+        password: String
     ) {
         viewModelScope.launch {
             signUpUseCase(
                 name,
+                prenom,
                 email,
-                password,
-                image
+                password
             )
                 .onEach {
                     _stateRegister.value = it

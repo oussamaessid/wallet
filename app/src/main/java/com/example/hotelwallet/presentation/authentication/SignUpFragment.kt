@@ -45,7 +45,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
             when(it){
                 is Resource.Loading ->setLoading(true)
                 is Resource.Success ->{
-//                    findNavController().navigate(R.id.action_registration_to_login)//TODO
+                    findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
                     setLoading(false)
                 }
                 is Resource.Error ->{
@@ -90,12 +90,12 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
             R.id.btnRegistration -> {
                 binding.apply {
                     if (checkForm()) {
-//                        authenticationViewModel.register(
-//                            name = editFirstName.text.toString(),
-//                            lastName = editLastName.text.toString(),
-//                            email = editEmail.text.toString(),
-//                            password = editPassword.text.toString()
-//                        )//TODO
+                        authenticationViewModel.register(
+                            name = editFirstName.text.toString(),
+                            prenom = editLastName.text.toString(),
+                            email = editEmail.text.toString(),
+                            password = editPassword.text.toString()
+                        )
                     }
                 }
             }

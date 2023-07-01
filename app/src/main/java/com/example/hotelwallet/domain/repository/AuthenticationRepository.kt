@@ -10,9 +10,9 @@ interface AuthenticationRepository {
 
     suspend fun signUp(
         name: String,
+        prenom: String,
         email: String,
-        password: String,
-        image: String
+        password: String
     ): Flow<Resource<Message>>
 
     suspend fun logout(): Flow<Resource<Boolean>>

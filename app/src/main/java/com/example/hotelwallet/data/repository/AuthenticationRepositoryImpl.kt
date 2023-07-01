@@ -36,7 +36,12 @@ class AuthenticationRepositoryImpl @Inject constructor(
                 emit(Resource.Success(userResponse))
             }
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred."))
+            val message = if (e.code() == 401){
+                "Votre compte n'est pas encore validé. Veuillez contacter l'administrateur."
+            }else{
+                e.message
+            }
+            emit(Resource.Error(message ?: "An unexpected error occurred."))
         } catch (e: IOException) {
             emit(Resource.Error("Couldn't reach server. Check your internet connection."))
         }
@@ -44,11 +49,11 @@ class AuthenticationRepositoryImpl @Inject constructor(
 
     override suspend fun signUp(
         name: String,
+        prenom: String,
         email: String,
-        password: String,
-        image: String
+        password: String
     ): Flow<Resource<Message>> = flow {
-        val registerRequest = SignUp(name, email, password,image)
+        val registerRequest = SignUp(name, prenom, email, password)
 
         try {
             emit(Resource.Loading)

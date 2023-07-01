@@ -31,7 +31,7 @@ interface Api {
     @POST("auth/login")
     suspend fun login(@Body credentials: LoginRequest):  UserResponse
 
-    @POST("auth/createUser")
+    @POST("auth/create")
     suspend fun signUp(@Body credentials: SignUp): MessageDto
 
     @GET("auth/profile")

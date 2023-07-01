@@ -11,14 +11,14 @@ class SignUpUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         name: String,
+        prenom: String,
         email: String,
-        password: String,
-        image: String
+        password: String
     ): Flow<Resource<Message>> =
         signRepository.signUp(
             name,
+            prenom,
             email,
-            password,
-            image
+            password
         )
 }
