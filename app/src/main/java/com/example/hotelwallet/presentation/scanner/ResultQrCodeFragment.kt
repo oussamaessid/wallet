@@ -1,7 +1,5 @@
 package com.example.hotelwallet.presentation.scanner
 
-import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.fragment.findNavController
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentResultQrCodeBinding
@@ -39,10 +36,7 @@ class ResultQrCodeFragment : ZXingScannerView.ResultHandler, BaseFragment<Fragme
     }
 
     override fun handleResult(p0: Result?) {
-        val bundle = Bundle()
-        bundle.putString("RESULT", p0.toString())
-        findNavController().navigate(R.id.action_resultQrCodeFragment_to_scannerFragment,bundle)
-
+        findNavController().navigate(R.id.action_resultQrCodeFragment_to_loginFragment)
     }
 
     override fun onResume() {

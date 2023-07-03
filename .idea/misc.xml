@@ -55,11 +55,13 @@
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_offers.xml" value="0.13020833333333334" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_profile.xml" value="0.21354166666666666" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_result_qr_code.xml" value="0.21354166666666666" />
+        <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_scanner.xml" value="0.11778115501519756" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_search.xml" value="0.1838768115942029" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_service.xml" value="0.2" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_setting.xml" value="0.2136529442417926" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_sign_up.xml" value="0.2421875" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_welcome.xml" value="0.2421875" />
+        <entry key="..\:/work/android/wallet/app/src/main/res/layout/fragment_welcome_on_boarding.xml" value="0.1" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/item_row_cart.xml" value="0.2421875" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/loading_layout.xml" value="0.2421875" />
         <entry key="..\:/work/android/wallet/app/src/main/res/layout/main_toolbar.xml" value="0.2421875" />

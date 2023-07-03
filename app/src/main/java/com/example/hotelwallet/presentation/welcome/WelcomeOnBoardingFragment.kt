@@ -82,7 +82,7 @@ class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>
                 binding.viewPager.currentItem = binding.viewPager.currentItem + 1
             }
             R.id.btnSkip -> {
-                findNavController().navigate(R.id.action_welcomeOnBoardingFragment_to_Login)
+                findNavController().navigate(R.id.action_welcomeOnBoardingFragment_to_Scanner)
             }
         }
     }
