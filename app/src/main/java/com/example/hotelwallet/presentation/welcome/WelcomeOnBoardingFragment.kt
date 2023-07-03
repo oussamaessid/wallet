@@ -33,14 +33,14 @@ class WelcomeOnBoardingFragment : BaseFragment<FragmentWelcomeOnBoardingBinding>
     private fun setSlideList() {
         slideList.add(
             WelcomeSlide(
-                R.drawable.bacground4,
+                R.drawable.background1,
                 getString(R.string.title_onboarding_1),
                 getString(R.string.description_onboarding_1)
             )
         )
         slideList.add(
             WelcomeSlide(
-                R.drawable.bacground4,
+                R.drawable.background2,
                 getString(R.string.title_onboarding_2),
                 getString(R.string.description_onboarding_2)
             )
